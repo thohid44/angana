@@ -13,6 +13,7 @@ class _TeacherRegState extends State<TeacherReg> {
   final TextEditingController teacherId = TextEditingController();
 
   final TextEditingController password = TextEditingController();
+  final TextEditingController department = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,25 @@ class _TeacherRegState extends State<TeacherReg> {
             child: TextField(
               controller: teacherId,
               decoration: InputDecoration(
-                  hintText: "Enter student ID",
+                  hintText: "Enter Teacher ID",
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30.r)),
+                  prefixIcon: Icon(
+                    Icons.person,
+                    color: Colors.red,
+                  )),
+            ),
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Container(
+            height: 45.h,
+            margin: EdgeInsets.symmetric(horizontal: 20.w),
+            child: TextField(
+              controller: teacherId,
+              decoration: InputDecoration(
+                  hintText: "Enter Department ",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.r)),
                   prefixIcon: Icon(

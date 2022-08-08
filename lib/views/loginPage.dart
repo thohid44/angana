@@ -1,4 +1,5 @@
 import 'package:angana/views/login.dart';
+import 'package:angana/views/teacherLogin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,25 +21,33 @@ class _LogInPageState extends State<LogInPage> {
             Container(
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.r),
-                  ),
-                  elevation: 3,
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: 150.h,
-                    width: 140.w,
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(15.r)),
-                    child: Text(
-                      "Teacher Login",
-                      style: TextStyle(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "Manjari",
-                          color: Colors.white),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TeacherLogin()));
+                  },
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.r),
+                    ),
+                    elevation: 3,
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 150.h,
+                      width: 140.w,
+                      decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(15.r)),
+                      child: Text(
+                        "Teacher Login",
+                        style: TextStyle(
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Manjari",
+                            color: Colors.white),
+                      ),
                     ),
                   ),
                 ),

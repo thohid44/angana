@@ -37,7 +37,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
             child: TextField(
               controller: stdId,
               decoration: InputDecoration(
-                  hintText: "Enter student ID",
+                  hintText: "Enter Teacher's ID",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.r)),
                   prefixIcon: Icon(
