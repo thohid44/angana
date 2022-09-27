@@ -20,16 +20,13 @@ class _TeacherLoginState extends State<TeacherLogin> {
       body: ListView(
         children: [
           SizedBox(
-            height: 50.h,
+            height: 15.h,
           ),
-          Center(
-            child: CircleAvatar(
-              radius: 70.r,
-              backgroundImage: AssetImage("assets/order.png"),
-            ),
+          Container(
+            child: Image.asset("assets/Picture1.png"),
           ),
           SizedBox(
-            height: 40.h,
+            height: 30.h,
           ),
           Container(
             height: 45.h,

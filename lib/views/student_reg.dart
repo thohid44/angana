@@ -21,16 +21,13 @@ class _StudentRegState extends State<StudentReg> {
       body: ListView(
         children: [
           SizedBox(
-            height: 50.h,
+            height: 15.h,
           ),
-          Center(
-            child: CircleAvatar(
-              radius: 70.r,
-              backgroundImage: AssetImage("assets/order.png"),
-            ),
+          Container(
+            child: Image.asset("assets/Picture1.png"),
           ),
           SizedBox(
-            height: 40.h,
+            height: 8.h,
           ),
           Container(
             height: 45.h,
@@ -48,7 +45,7 @@ class _StudentRegState extends State<StudentReg> {
             ),
           ),
           SizedBox(
-            height: 20.h,
+            height: 10.h,
           ),
           Container(
             height: 45.h,
@@ -67,7 +64,7 @@ class _StudentRegState extends State<StudentReg> {
             ),
           ),
           SizedBox(
-            height: 20.h,
+            height: 10.h,
           ),
           Container(
             height: 45.h,
@@ -86,7 +83,7 @@ class _StudentRegState extends State<StudentReg> {
             ),
           ),
           SizedBox(
-            height: 25.h,
+            height: 10.h,
           ),
           Container(
             height: 45.h,

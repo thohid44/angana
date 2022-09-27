@@ -1,3 +1,4 @@
+import 'package:angana/views/todays_attends.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -37,6 +38,12 @@ class _TeacherHomeState extends State<TeacherHome> {
                   setState(() {
                     selector = value;
                   });
+                  if (selector == 'Running') {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TodaysAttends()));
+                  }
                 },
                 value: selector,
 

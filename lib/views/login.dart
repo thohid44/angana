@@ -22,11 +22,8 @@ class _StudentLoginState extends State<StudentLogin> {
           SizedBox(
             height: 50.h,
           ),
-          Center(
-            child: CircleAvatar(
-              radius: 70.r,
-              backgroundImage: AssetImage("assets/order.png"),
-            ),
+          Container(
+            child: Image.asset("assets/Picture1.png"),
           ),
           SizedBox(
             height: 40.h,
