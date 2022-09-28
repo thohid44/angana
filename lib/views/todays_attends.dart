@@ -135,7 +135,9 @@ class _TodaysAttendsState extends State<TodaysAttends> {
                                         ? Colors.blue
                                         : Colors.red),
                                 child: Text(
-                                  "Present",
+                                  color != student[index]['id']
+                                      ? "Present"
+                                      : "Absent",
                                   style: TextStyle(
                                       fontSize: 13.sp,
                                       fontWeight: FontWeight.w500,

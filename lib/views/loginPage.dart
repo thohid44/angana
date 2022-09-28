@@ -18,6 +18,12 @@ class _LogInPageState extends State<LogInPage> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 10.h,
+            ),
+            Container(
+              child: Image.asset("assets/Picture1.png"),
+            ),
             Container(
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
