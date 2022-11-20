@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1097218235939",
+    "project_id": "my-app-notify-58f95",
+    "storage_bucket": "my-app-notify-58f95.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097218235939:android:e5814b22ea0e6bcf8fdb96",
+        "android_client_info": {
+          "package_name": "com.example.angana"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1097218235939-f8p2e763nrbj8pecik5gma0b2cooqml1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCy4AB9M4O36eC2K-oU1D9xnTSRZjgEQl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1097218235939-f8p2e763nrbj8pecik5gma0b2cooqml1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

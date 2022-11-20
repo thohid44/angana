@@ -1,0 +1,83 @@
+[
+    {
+        "Id": 170,
+        "Name": "Fall 2021 (B. Sc.)",
+        "Startdate": "1/1/2022 12:00:00 AM",
+        "Enddate": "",
+        "Status": "running",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 161,
+        "Name": "Spring 2021 (B. Sc.)",
+        "Startdate": "6/21/2021 12:00:00 AM",
+        "Enddate": "",
+        "Status": "Running",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 150,
+        "Name": "Fall 2020 (B. Sc.)",
+        "Startdate": "1/2/2021 12:00:00 AM",
+        "Enddate": "8/18/2021 12:00:00 AM",
+        "Status": "Completed",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 146,
+        "Name": "Spring (Lab) 2020 (B. Sc.)",
+        "Startdate": "12/1/2020 12:00:00 AM",
+        "Enddate": "8/12/2021 12:00:00 AM",
+        "Status": "Completed",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 132,
+        "Name": "Spring 2020 (B. Sc.)",
+        "Startdate": "3/1/2020 12:00:00 AM",
+        "Enddate": "2/4/2021 12:00:00 AM",
+        "Status": "Completed",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 123,
+        "Name": "August 2019 (B. Sc.)",
+        "Startdate": "8/24/2019 12:00:00 AM",
+        "Enddate": "2/2/2020 12:00:00 AM",
+        "Status": "Completed",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 115,
+        "Name": "February 2019 (B. Sc.)",
+        "Startdate": "2/24/2019 12:00:00 AM",
+        "Enddate": "8/28/2019 12:00:00 AM",
+        "Status": "Completed",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 108,
+        "Name": "September 2018 (B. Sc.)",
+        "Startdate": "9/1/2018 12:00:00 AM",
+        "Enddate": "2/9/2019 12:00:00 AM",
+        "Status": "Completed",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 101,
+        "Name": "January 2018 (B. Sc.)",
+        "Startdate": "1/17/2018 12:00:00 AM",
+        "Enddate": "7/7/2018 12:00:00 AM",
+        "Status": "Completed",
+        "Message": null,
+        "MessageCode": 0
+    }
+]

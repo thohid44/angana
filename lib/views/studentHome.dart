@@ -28,6 +28,7 @@ void initState(){
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text("Student Home"),),
       body: FutureBuilder(
          future: fetchstudentCourseModel(), 
          builder: (context, AsyncSnapshot snapshot){
