@@ -13,7 +13,22 @@ class StudentLogin extends StatefulWidget {
 class _StudentLoginState extends State<StudentLogin> {
   final TextEditingController stdId = TextEditingController();
   final TextEditingController password = TextEditingController();
-
+    List data = [
+      '123', '12345'
+    ];
+    studentLoginCheck(){
+      if(data.contains(stdId.text.toString()) && data.contains(stdId.text.toString()) ){
+        print(stdId.text);
+       Navigator.push(context, MaterialPageRoute(builder:(_)=>StudentHome()));
+      } else{
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User and Password Wrong"), 
+        
+        duration: Duration(seconds: 2), 
+        dismissDirection: DismissDirection.up,
+        ));
+      }
+      
+    }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,8 +100,7 @@ class _StudentLoginState extends State<StudentLogin> {
           ),
           InkWell(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => StudentHome()));
+             studentLoginCheck();
             },
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 60.w),
@@ -129,4 +143,58 @@ class _StudentLoginState extends State<StudentLogin> {
       ),
     );
   }
+
+  List stdList = [
+    {
+    "Id": 2575,
+    "DepartmentId": 1,
+    "ProgramId": 1,
+    "Name": "Tasnim Sultana",
+    "Roll": "1703310201452",
+    "Status": null,
+    "Salt": 0,
+    "Password": "12345",
+    "DepartmentName": null,
+    "CGPA": null,
+    "Credit": 0.0,
+    "TotalCredit": 0.0,
+    "Last_Result_Update": null,
+    "ProgramName": null,
+    "Batch": "33",
+    "Url": "http://192.168.2.10/studenteng/student_image/1703310201452-2575.jpg",
+    "Phone": "01532450444",
+    "LoginType": "student",
+    "Email": "",
+    "Address": "Chandgoan R/A,Block-B,Road no-7,House no-133,Chittagong",
+    "Advisor": "Anik Sen",
+    "Message": "Successfully Logged in",
+    "MessageCode": 200
+},
+{
+    "Id": 2576,
+    "DepartmentId": 1,
+    "ProgramId": 1,
+    "Name": "Angana Barua",
+    "Roll": "1703310201453",
+    "Status": null,
+    "Salt": 0,
+    "Password": "12345",
+    "DepartmentName": null,
+    "CGPA": null,
+    "Credit": 0.0,
+    "TotalCredit": 0.0,
+    "Last_Result_Update": null,
+    "ProgramName": null,
+    "Batch": "33",
+    "Url": "http://192.168.2.10/studenteng/student_image/1703310201452-2575.jpg",
+    "Phone": "01532450444",
+    "LoginType": "student",
+    "Email": "",
+    "Address": "Chandgoan R/A,Block-B,Road no-7,House no-133,Chittagong",
+    "Advisor": "Anik Sen",
+    "Message": "Successfully Logged in",
+    "MessageCode": 200
+}
+
+];
 }

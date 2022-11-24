@@ -1,4 +1,5 @@
-import 'package:angana/views/login.dart';
+
+import 'package:angana/views/student_login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

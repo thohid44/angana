@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:angana/model/student_course_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' as rootBundle;
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StudentHome extends StatefulWidget {
   const StudentHome({Key? key}) : super(key: key);
@@ -29,25 +30,28 @@ void initState(){
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Student Home"),),
-      body: FutureBuilder(
-         future: fetchstudentCourseModel(), 
-         builder: (context, AsyncSnapshot snapshot){
-          if(snapshot.hasError){
-            return Center(child: Text("${snapshot.error}"));
-          }else if(snapshot.hasData){
-              var items = snapshot.data as List<StudentCourseModel>; 
-       return ListView.builder(
-      itemCount: 5,
-   itemBuilder:(context,index){
-    return ListTile(title: Text(items[index].course.toString()));
-   },
-       );
-          }else{
-            return Center(child:CircularProgressIndicator()); 
-          }
-         },
+      body: Column(
+        children: [ 
+          SizedBox(height: 30.h,),
+          Container(
+            padding: EdgeInsets.only(left: 15.w, bottom: 10),
+            alignment: Alignment.centerLeft,
+            child: Text("Student Name: Angana Barua",
+            style: TextStyle(fontSize: 17.sp, color: Colors.black, fontWeight: FontWeight.w600),),
+          ), 
+          Container(
+                padding: EdgeInsets.only(left: 15.w),
+                 alignment: Alignment.centerLeft,
+            child: Text("Student Roll: 1234565", 
+            style: TextStyle(fontSize: 17.sp, color: Colors.black, fontWeight: FontWeight.w600),
+            ),
+          ), 
 
-      ), 
+
+        ],
+      )
     );
   }
+
+  
 }
