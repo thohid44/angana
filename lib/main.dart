@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:angana/Push/push_notifycation_home.dart';
 import 'package:angana/views/login.dart';
-import 'package:angana/views/loginPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +66,9 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LogInPage(),
+      home: check == false
+          ? const Home()
+          : ,
     );
   }
 }
