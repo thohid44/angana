@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:angana/Push/push_notifycation_home.dart';
-import 'package:angana/views/login.dart';
+import 'package:angana/views/loginPage.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -61,14 +62,23 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: check == false
-          ? const Home()
-          : ,
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'First Method',
+          // You can use the library anywhere in the app even in theme
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
+          ),
+          home: child,
+        );
+      },
+      child: LogInPage(),
     );
   }
 }

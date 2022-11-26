@@ -11,8 +11,9 @@ class TeacherHome extends StatefulWidget {
 
 class _TeacherHomeState extends State<TeacherHome> {
   List<String> _serviceName = [
-    'Running',
-    'Completed',
+    'Machine Learning',
+    "Machine Learning Laboratory",
+    "Pattern Recognition",
   ];
   List<int> _serviceNumber = [1, 2];
   String? selector;
@@ -51,7 +52,7 @@ class _TeacherHomeState extends State<TeacherHome> {
                 underline: Container(),
                 hint: Center(
                     child: Text(
-                  'Select Semester',
+                  'Select Course',
                   style: TextStyle(
                       fontFamily: 'Manjari',
                       fontWeight: FontWeight.w700,
