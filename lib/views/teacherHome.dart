@@ -40,60 +40,60 @@
 //   }
 // }
 
-class _TeacherHomeState extends State<TeacherHome> {
-  List<String> _serviceName = [
-    'Running',
-    'Completed',
-  ];
-  List<int> _serviceNumber = [1, 2];
-  String? selector;
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Teacher Section")),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 45.h,
-              padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
-              decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 1.w,
-                  ),
-                  borderRadius: BorderRadius.circular(13.r)),
-              child: DropdownButton<String>(
-                onChanged: (value) {
-                  setState(() {
-                    selector = value;
-                  });
-                  if (selector == 'Running') {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => TodaysAttends()));
-                  }
-                },
-                value: selector,
+// class _TeacherHomeState extends State<TeacherHome> {
+//   List<String> _serviceName = [
+//     'Running',
+//     'Completed',
+//   ];
+//   List<int> _serviceNumber = [1, 2];
+//   String? selector;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: Text("Teacher Section")),
+//       body: Padding(
+//         padding: EdgeInsets.symmetric(horizontal: 20.w),
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             Container(
+//               height: 45.h,
+//               padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
+//               decoration: BoxDecoration(
+//                   border: Border.all(
+//                     width: 1.w,
+//                   ),
+//                   borderRadius: BorderRadius.circular(13.r)),
+//               child: DropdownButton<String>(
+//                 onChanged: (value) {
+//                   setState(() {
+//                     selector = value;
+//                   });
+//                   if (selector == 'Running') {
+//                     Navigator.push(
+//                         context,
+//                         MaterialPageRoute(
+//                             builder: (context) => TodaysAttends()));
+//                   }
+//                 },
+//                 value: selector,
 
-                // Hide the default underline
-                underline: Container(),
-                hint: Center(
-                    child: Text(
-                  'Select Semester',
-                  style: TextStyle(
-                      fontFamily: 'Manjari',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14.sp),
-                )),
-                icon: Icon(
-                  Icons.arrow_downward,
-                  color: Colors.black,
-                  size: 20.h,
-                ),
-                isExpanded: true,
+//                 // Hide the default underline
+//                 underline: Container(),
+//                 hint: Center(
+//                     child: Text(
+//                   'Select Semester',
+//                   style: TextStyle(
+//                       fontFamily: 'Manjari',
+//                       fontWeight: FontWeight.w700,
+//                       fontSize: 14.sp),
+//                 )),
+//                 icon: Icon(
+//                   Icons.arrow_downward,
+//                   color: Colors.black,
+//                   size: 20.h,
+//                 ),
+//                 isExpanded: true,
 
 //                 // The list of options
 //                 items: _serviceName
