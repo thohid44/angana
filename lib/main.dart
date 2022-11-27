@@ -1,13 +1,13 @@
 import 'dart:developer';
 
 import 'package:angana/Push/push_notifycation_home.dart';
-
 import 'package:angana/views/loginPage.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
     'High Importance Notifications', // title
@@ -24,11 +24,10 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('A bg message just showed up :  ${message.messageId}');
 }
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  
+
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   await flutterLocalNotificationsPlugin
@@ -42,8 +41,6 @@ Future<void> main() async {
     sound: true,
   );
 
-
-  
   runApp(const MyApp());
 }
 
@@ -62,13 +59,14 @@ class _MyAppState extends State<MyApp> {
     check;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    return  ScreenUtilInit(
+    return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context , child) {
+      builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'First Method',
@@ -80,10 +78,9 @@ class _MyAppState extends State<MyApp> {
           home: child,
         );
       },
-      child: const LogInPage(),
+      child: LogInPage(),
     );
-  
-}
+  }
 }
 
 class Home extends StatefulWidget {
@@ -94,11 +91,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-void initState() {
-   
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+  void initState() {
     super.initState();
-     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
       if (notification != null && android != null) {
@@ -143,10 +140,10 @@ void initState() {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(title: Text("data"),),
+      appBar: AppBar(
+        title: Text("data"),
+      ),
     );
-    
   }
 }

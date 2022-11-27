@@ -1,0 +1,1559 @@
+                                                                     StudentAttendance API
+                                                                    ----------------------                                                                    
+                                                                       
+                                                                      Check Class Rotine
+
+##http://localhost:49800/api/StudentAttendance/CheckClassRoutine?sessionCourseId=3637&day=Saturday&programId=1##
+
+if no class available 
+	{
+    "Data": null,
+    "Message": "No Routine Found In This Day. Please Set Up Residule Class. ",
+    "MessageCode": 201
+}
+if class available 
+{
+    "Data": [
+        {
+            "id": 9,
+            "dayname": "Saturday",
+            "class_time": "8.30",
+            "class_start": "8.3",
+            "class_end": "09.30"
+        }
+    ],
+    "Message": "Successfully Get Today's Class. ",
+    "MessageCode": 200
+}
+                                                                           Set Adjustment Class(POST method)
+
+http://localhost:49800/api/StudentAttendance/SetAdjClass?sessionCourseId=3637&date=12/10/22&day=monday&startTime=10&endTime=4&deptId=1&entryBy=kingshuk
+ {
+    "Data": [],
+    "Message": "Successfully Set Today's Adjustment Class. ",
+    "MessageCode": 200
+}
+
+                                                                         Set Adjustment Attendance(POST method)
+
+##http://localhost:49800/api/StudentAttendance/SetAttendance?sessionCourseId=3637&day=monday&deptId=1&studentIds=1703310201452&entryBy=kingshuk
+                                                                
+{
+    "Data": null,
+    "Message": "Successfully Insert",
+    "MessageCode": 200
+}
+
+
+                                                                 
+
+                                                    total Class Held Previous
+##http://localhost:49800/api/StudentAttendance/getTotalClassHeld?sessionCourseId=6818&programId=1
+{
+    "Data": [
+        {
+            "id": 5,
+            "day": "Saturday",
+            "date": "2022-10-19T00:00:00",
+            "adj_class": 1,
+            "tbl_sessioncourse_id": 6818,
+            "class_start": "10:00",
+            "class_end": "12:30"
+        },
+        {
+            "id": 6,
+            "day": "Monday",
+            "date": "2022-10-24T00:00:00",
+            "adj_class": 1,
+            "tbl_sessioncourse_id": 6818,
+            "class_start": "12:00",
+            "class_end": "1:30"
+        }
+    ],
+    "Message": null,
+    "MessageCode": 0
+}
+
+
+                                           Get Short Details of specific days 
+##http://localhost:49800/api/StudentAttendance/shortReport?sessionCourseId=6818&date=10-19-2022&programId=1
+
+{
+    "Data": [
+        {
+            "TotalStudent": "45",
+            "PresentStudent": "43",
+            "AbsentStudent": "2"
+        }
+    ],
+    "Message": "Successfully Get Reports",
+    "MessageCode": 200
+}
+
+
+                                      Get brif Details of specific days class with student
+##http://localhost:49800/api/StudentAttendance/brifReport?sessionCourseId=6818&date=10-19-2022&programId=1
+{
+    "Data": [
+        {
+            "id": "3553",
+            "name": "Syek Mohammed Moin Uddin",
+            "roll": "1903710202003",
+            "batch_name": "37",
+            "status": "Absent"
+        },
+        {
+            "id": "3553",
+            "name": "Syek Mohammed Moin Uddin",
+            "roll": "1903710202003",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3554",
+            "name": "Mahi Chowdhury",
+            "roll": "1903710202004",
+            "batch_name": "37",
+            "status": "Absent"
+        },
+        {
+            "id": "3554",
+            "name": "Mahi Chowdhury",
+            "roll": "1903710202004",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3557",
+            "name": "MD. Imtiaz Rahman Khan",
+            "roll": "1903710202006",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3559",
+            "name": "MD. Tayeb Mahmud",
+            "roll": "1903710202007",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3561",
+            "name": "Mohammad Irfan Khan",
+            "roll": "1903710202008",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3565",
+            "name": "Mossammat Nilufa Yeasmin",
+            "roll": "1903710202009",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3567",
+            "name": "Tonmoy Bose",
+            "roll": "1903710202010",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3571",
+            "name": "Niloy Barua Supta",
+            "roll": "1903710202012",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3575",
+            "name": "Tajin Mabud Emon",
+            "roll": "1903710202016",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3576",
+            "name": "MD. Tanben Faruq",
+            "roll": "1903710202017",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3577",
+            "name": "Nevil Chowdhury",
+            "roll": "1903710202018",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3581",
+            "name": "Prionkar Barua",
+            "roll": "1903710202020",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3587",
+            "name": "Ullash Deb Nath",
+            "roll": "1903710202023",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3588",
+            "name": "Hur-E-Jannath",
+            "roll": "1903710202024",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3595",
+            "name": "Abdus Salam",
+            "roll": "1903710202029",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3600",
+            "name": "Ramisa Arafath Jerin",
+            "roll": "1903710202033",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3602",
+            "name": "Preya Deb",
+            "roll": "1903710202035",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3604",
+            "name": "Mohammed Yonose",
+            "roll": "1903710202037",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3605",
+            "name": "Kothiza Begum Ayrin",
+            "roll": "1903710202038",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3607",
+            "name": "Maher Afroz",
+            "roll": "1903710202040",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3608",
+            "name": "Farial Robama",
+            "roll": "1903710202041",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3610",
+            "name": "Abdullah Al Mamun",
+            "roll": "1903710202043",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3611",
+            "name": "Sayeda Farhana Absar",
+            "roll": "1903710202044",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3613",
+            "name": "Sanjana Hannan",
+            "roll": "1903710202046",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3615",
+            "name": "Kashaf Hossain",
+            "roll": "1903710202048",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3616",
+            "name": "Tanjid Masum Emu",
+            "roll": "1903710202049",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3617",
+            "name": "Saira Jahan",
+            "roll": "1903710202050",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3599",
+            "name": "Mohammad Arif Hasan Rashid",
+            "roll": "1903710202032",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3620",
+            "name": "Taslima Akter Josna",
+            "roll": "1903710202053",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3623",
+            "name": "Ava Rahman",
+            "roll": "1903710202056",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3625",
+            "name": "Fahima Akter",
+            "roll": "1903710202058",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3626",
+            "name": "MD. Simon Alam Sakib",
+            "roll": "1903710202059",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3630",
+            "name": "Abdullah Al Adib",
+            "roll": "1903710202060",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3631",
+            "name": "Partha Shill",
+            "roll": "1903710202061",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3633",
+            "name": "Lamim Ahmed",
+            "roll": "1903710202063",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3634",
+            "name": "H.M. Tarequl Karim",
+            "roll": "1903710202064",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3635",
+            "name": "MD. Tanvir Chowdhury",
+            "roll": "1903710202065",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3636",
+            "name": "Maksudur Rahman Rafi",
+            "roll": "1903710202066",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3637",
+            "name": "Kazi Muntaha Ahasan",
+            "roll": "1903710202067",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3639",
+            "name": "Mohammad Saad Uddin Chowdhury",
+            "roll": "1903710202068",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3618",
+            "name": "MD. Al- Mamun",
+            "roll": "1903710202051",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3582",
+            "name": "R.H.M Sohag Milon",
+            "roll": "1903710202021",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "3624",
+            "name": "MD. Abdullah Rahman Dipu",
+            "roll": "1903710202057",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "2419",
+            "name": "Mominul Karim",
+            "roll": "1703210201323",
+            "batch_name": "32",
+            "status": "Present"
+        },
+        {
+            "id": "2036",
+            "name": "Mohammad Jamshedul Islam",
+            "roll": "1502910201101",
+            "batch_name": "29",
+            "status": "Present"
+        },
+        {
+            "id": "3196",
+            "name": "Priya Ghosh",
+            "roll": "1903610201757",
+            "batch_name": "36",
+            "status": "Present"
+        },
+        {
+            "id": "3274",
+            "name": "Raj Dev Ullash",
+            "roll": "1903610201804",
+            "batch_name": "36",
+            "status": "Present"
+        },
+        {
+            "id": "3622",
+            "name": "Rukshedul Islam",
+            "roll": "1903710202055",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "2236",
+            "name": "Moitree Das Moni",
+            "roll": "1603110201229",
+            "batch_name": "31",
+            "status": "Present"
+        },
+        {
+            "id": "2256",
+            "name": "Muhammad Muktiar Hossen",
+            "roll": "1603110201249",
+            "batch_name": "31",
+            "status": "Present"
+        },
+        {
+            "id": "3614",
+            "name": "Shaharin Jahan Sneha",
+            "roll": "1903710202047",
+            "batch_name": "37",
+            "status": "Present"
+        },
+        {
+            "id": "1749",
+            "name": "Md Julhasar Sagar",
+            "roll": "1502810200910",
+            "batch_name": "28",
+            "status": "Present"
+        },
+        {
+            "id": "3572",
+            "name": "Pritam Chowdhury",
+            "roll": "1903710202013",
+            "batch_name": "37",
+            "status": "Present"
+        }
+    ],
+    "Message": "Successfully Get Student Data. ",
+    "MessageCode": 200
+}
+
+                                                   getStudentClassShortDetails
+
+##http://localhost:49800/api/StudentAttendance/getStudentClassShortDetails?studentId=3553&sessionCourseId=6818&programId=1
+
+{
+    "Data": [
+        {
+            "totalClass": "2",
+            "presentClass": "1",
+            "absentClass": "1",
+            "percentage": "50%"
+        }
+    ],
+    "Message": "Successfully Get Data",
+    "MessageCode": 200
+}
+
+                                            getStudentClassDetails
+##http://localhost:49800/api/StudentAttendance/getStudentClassDetails?studentId=3553&sessionCourseId=6818&programId=1
+{
+    "Data": [
+        {
+            "date": "10/19/2022 12:00:00 AM",
+            "day": "Saturday",
+            "class_start": "10:00",
+            "class_end": "12:30",
+            "adjustmentClass": "1",
+            "status": "Absent"
+        }
+    ],
+    "Message": "Successfully Found. ",
+    "MessageCode": 200
+}
+
+
+                                                      Login API
+                                                   ---------------
+                                           (As a Teacher)( Post method)
+
+                           LoginAction
+##http://localhost:49800/api/Login/LoginAction?loginType=teacher&user=kingshuk&pass=123456
+ 
+{
+    "Id": 0,
+    "DepartmentId": 0,
+    "ProgramId": 0,
+    "Name": null,
+    "Roll": null,
+    "Status": null,
+    "Salt": 0,
+    "Password": null,
+    "DepartmentName": null,
+    "CGPA": null,
+    "Credit": 0.0,
+    "TotalCredit": 0.0,
+    "Last_Result_Update": null,
+    "ProgramName": null,
+    "Batch": null,
+    "Url": null,
+    "Phone": null,
+    "LoginType": null,
+    "Email": null,
+    "Address": null,
+    "Advisor": null,
+    "Message": "Select Login Type Correctly",
+    "MessageCode": 201
+}
+
+                                             (As a Student)( Post method)
+
+                           LoginAction
+##http://localhost:49800/api/Login/LoginAction?loginType=student&user=1703310201452&pass=123456
+
+{
+    "Id": 2575,
+    "DepartmentId": 1,
+    "ProgramId": 1,
+    "Name": "Tasnim Sultana",
+    "Roll": "1703310201452",
+    "Status": null,
+    "Salt": 0,
+    "Password": "",
+    "DepartmentName": null,
+    "CGPA": null,
+    "Credit": 0.0,
+    "TotalCredit": 0.0,
+    "Last_Result_Update": null,
+    "ProgramName": null,
+    "Batch": "33",
+    "Url": "http://192.168.2.10/studenteng/student_image/1703310201452-2575.jpg",
+    "Phone": "01532450444",
+    "LoginType": "student",
+    "Email": "",
+    "Address": "Chandgoan R/A,Block-B,Road no-7,House no-133,Chittagong",
+    "Advisor": "Anik Sen",
+    "Message": "Successfully Logged in",
+    "MessageCode": 200
+}
+
+                               Student API
+                             ---------------
+  
+                            GetSession Selection
+####http://localhost:49800/api/Student/GetSession?user=1703310201452&programID=1
+
+[
+    {
+        "Id": 170,
+        "Name": "Fall 2021 (B. Sc.)",
+        "Startdate": "1/1/2022 12:00:00 AM",
+        "Enddate": "",
+        "Status": "running",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 161,
+        "Name": "Spring 2021 (B. Sc.)",
+        "Startdate": "6/21/2021 12:00:00 AM",
+        "Enddate": "",
+        "Status": "Running",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 150,
+        "Name": "Fall 2020 (B. Sc.)",
+        "Startdate": "1/2/2021 12:00:00 AM",
+        "Enddate": "8/18/2021 12:00:00 AM",
+        "Status": "Completed",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 146,
+        "Name": "Spring (Lab) 2020 (B. Sc.)",
+        "Startdate": "12/1/2020 12:00:00 AM",
+        "Enddate": "8/12/2021 12:00:00 AM",
+        "Status": "Completed",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 132,
+        "Name": "Spring 2020 (B. Sc.)",
+        "Startdate": "3/1/2020 12:00:00 AM",
+        "Enddate": "2/4/2021 12:00:00 AM",
+        "Status": "Completed",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 123,
+        "Name": "August 2019 (B. Sc.)",
+        "Startdate": "8/24/2019 12:00:00 AM",
+        "Enddate": "2/2/2020 12:00:00 AM",
+        "Status": "Completed",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 115,
+        "Name": "February 2019 (B. Sc.)",
+        "Startdate": "2/24/2019 12:00:00 AM",
+        "Enddate": "8/28/2019 12:00:00 AM",
+        "Status": "Completed",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 108,
+        "Name": "September 2018 (B. Sc.)",
+        "Startdate": "9/1/2018 12:00:00 AM",
+        "Enddate": "2/9/2019 12:00:00 AM",
+        "Status": "Completed",
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 101,
+        "Name": "January 2018 (B. Sc.)",
+        "Startdate": "1/17/2018 12:00:00 AM",
+        "Enddate": "7/7/2018 12:00:00 AM",
+        "Status": "Completed",
+        "Message": null,
+        "MessageCode": 0
+    }
+]
+
+                       Session Course Selection
+
+####http://localhost:49800/api/Student/SessionCourse?user=1703310201452&sessionID=170&programID=1
+[
+    {
+        "Id": 224156,
+        "Course": "Machine Learning",
+        "CourseCode": "CSE 457(V3)",
+        "Section": " - Section B",
+        "Credit": "3",
+        "Status": "Pending",
+        "Examtype": "Regular",
+        "CourseFee": 5400.00,
+        "ExamFee": 900.00,
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 224157,
+        "Course": "Machine Learning Laboratory",
+        "CourseCode": "CSE 458(V3)",
+        "Section": " - Section B",
+        "Credit": "1",
+        "Status": "Pending",
+        "Examtype": "Regular",
+        "CourseFee": 1800.00,
+        "ExamFee": 300.00,
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 224158,
+        "Course": "Pattern Recognition",
+        "CourseCode": "CSE 459(V3)",
+        "Section": " - Section B",
+        "Credit": "3",
+        "Status": "Pending",
+        "Examtype": "Regular",
+        "CourseFee": 5400.00,
+        "ExamFee": 900.00,
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 224159,
+        "Course": "Pattern Recognition Laboratory",
+        "CourseCode": "CSE 460(V3)",
+        "Section": " - Section B",
+        "Credit": "1",
+        "Status": "Pending",
+        "Examtype": "Regular",
+        "CourseFee": 1800.00,
+        "ExamFee": 300.00,
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 224154,
+        "Course": "Compiler Construction",
+        "CourseCode": "CSE 453(V3)",
+        "Section": " - Section B",
+        "Credit": "3",
+        "Status": "Pending",
+        "Examtype": "Regular",
+        "CourseFee": 5400.00,
+        "ExamFee": 900.00,
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 224155,
+        "Course": "Compiler Construction Laboratory",
+        "CourseCode": "CSE 454(V3)",
+        "Section": " - Section B",
+        "Credit": "1.5",
+        "Status": "Pending",
+        "Examtype": "Regular",
+        "CourseFee": 2700.00,
+        "ExamFee": 450.00,
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 224160,
+        "Course": "Contemporary Course of Computer Science",
+        "CourseCode": "CSE 481(V3)",
+        "Section": " - Section B",
+        "Credit": "3",
+        "Status": "Pending",
+        "Examtype": "Regular",
+        "CourseFee": 5400.00,
+        "ExamFee": 900.00,
+        "Message": null,
+        "MessageCode": 0
+    },
+    {
+        "Id": 224161,
+        "Course": "Contemporary Course of Computer Science Laboratory",
+        "CourseCode": "CSE 482(V3)",
+        "Section": " - Section B",
+        "Credit": "1",
+        "Status": "Pending",
+        "Examtype": "Regular",
+        "CourseFee": 1800.00,
+        "ExamFee": 300.00,
+        "Message": null,
+        "MessageCode": 0
+    }
+]
+
+                                          # Session API
+                                        -----------------
+
+                                      Running Course Selection
+                         http://localhost:49800/api/Session/Running?deptId=1
+{
+    "Data": [
+        {
+            "id": 170,
+            "sessionname": "Fall 2021 (B. Sc.)",
+            "startdate": "2022-01-01T00:00:00",
+            "enddate": null,
+            "isenrollmentopen_adv": 1,
+            "isenrollmentopen_stu": 1,
+            "status": "running"
+        },
+        {
+            "id": 162,
+            "sessionname": "4th Semester Retake (B. Sc.)",
+            "startdate": "2021-07-04T00:00:00",
+            "enddate": null,
+            "isenrollmentopen_adv": 0,
+            "isenrollmentopen_stu": 0,
+            "status": "Running"
+        },
+        {
+            "id": 163,
+            "sessionname": "July-2021_Thesis/Project (B. Sc.)",
+            "startdate": "2021-07-01T00:00:00",
+            "enddate": null,
+            "isenrollmentopen_adv": 1,
+            "isenrollmentopen_stu": 0,
+            "status": "Running"
+        },
+        {
+            "id": 161,
+            "sessionname": "Spring 2021 (B. Sc.)",
+            "startdate": "2021-06-21T00:00:00",
+            "enddate": null,
+            "isenrollmentopen_adv": 0,
+            "isenrollmentopen_stu": 0,
+            "status": "Running"
+        }
+    ],
+    "Message": "All Running Session [4 entries]",
+    "MessageCode": 200
+}
+
+                          Completed session
+####http://localhost:49800/api/Session/Completed?deptId=1
+{
+    "Data": [
+        {
+            "id": 150,
+            "sessionname": "Fall 2020 (B. Sc.)",
+            "startdate": "2021-01-02T00:00:00",
+            "enddate": "2021-08-18T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 154,
+            "sessionname": "Physics II Special (B. Sc.)",
+            "startdate": "2020-12-05T00:00:00",
+            "enddate": "2021-06-17T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 146,
+            "sessionname": "Spring (Lab) 2020 (B. Sc.)",
+            "startdate": "2020-12-01T00:00:00",
+            "enddate": "2021-08-12T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 140,
+            "sessionname": "Special Retake 2020 (B. Sc.)",
+            "startdate": "2020-07-25T00:00:00",
+            "enddate": "2020-09-30T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 138,
+            "sessionname": "July-2020_Thesis/Project (B. Sc.)",
+            "startdate": "2020-07-01T00:00:00",
+            "enddate": "2021-08-22T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 132,
+            "sessionname": "Spring 2020 (B. Sc.)",
+            "startdate": "2020-03-01T00:00:00",
+            "enddate": "2021-02-04T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 130,
+            "sessionname": "Credit Transfer - Version3 (B.Sc.)",
+            "startdate": "2019-10-02T00:00:00",
+            "enddate": "2019-10-02T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 123,
+            "sessionname": "August 2019 (B. Sc.)",
+            "startdate": "2019-08-24T00:00:00",
+            "enddate": "2020-02-02T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 122,
+            "sessionname": "July-2019_Thesis/Project (B. Sc.)",
+            "startdate": "2019-07-29T00:00:00",
+            "enddate": "2020-07-29T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 115,
+            "sessionname": "February 2019 (B. Sc.)",
+            "startdate": "2019-02-24T00:00:00",
+            "enddate": "2019-08-28T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 108,
+            "sessionname": "September 2018 (B. Sc.)",
+            "startdate": "2018-09-01T00:00:00",
+            "enddate": "2019-02-09T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 107,
+            "sessionname": "July-2018_Thesis/Project (B. Sc.) (B. Sc.)",
+            "startdate": "2018-07-25T00:00:00",
+            "enddate": "2019-10-30T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 101,
+            "sessionname": "January 2018 (B. Sc.)",
+            "startdate": "2018-01-17T00:00:00",
+            "enddate": "2018-07-07T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 94,
+            "sessionname": "July 2017 (B. Sc.)",
+            "startdate": "2017-07-03T00:00:00",
+            "enddate": "2018-01-03T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 97,
+            "sessionname": "July-2017_Thesis/Project (B. Sc.)",
+            "startdate": "2017-07-02T00:00:00",
+            "enddate": "2018-07-16T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 91,
+            "sessionname": "January 2017 (B. Sc.)",
+            "startdate": "2017-01-01T00:00:00",
+            "enddate": "2017-07-27T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 85,
+            "sessionname": "July-2016_Thesis/Project (B. Sc.)",
+            "startdate": "2016-08-30T00:00:00",
+            "enddate": "2017-06-30T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 80,
+            "sessionname": "July 2016 (B. Sc.)",
+            "startdate": "2016-07-17T00:00:00",
+            "enddate": "2016-12-31T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 79,
+            "sessionname": "January-2016_Thesis/Project (B. Sc.)",
+            "startdate": "2016-02-01T00:00:00",
+            "enddate": "2016-08-30T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 76,
+            "sessionname": "January 2016 (B. Sc.)",
+            "startdate": "2016-01-09T00:00:00",
+            "enddate": "2016-07-06T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 67,
+            "sessionname": "July 2015 (B. Sc.)",
+            "startdate": "2015-07-25T00:00:00",
+            "enddate": "2015-12-30T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 68,
+            "sessionname": "July-2015_Thesis/Project (B. Sc.)",
+            "startdate": "2015-07-01T00:00:00",
+            "enddate": "2016-01-31T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 63,
+            "sessionname": "January-2015_Thesis/Project (B. Sc.)",
+            "startdate": "2015-02-07T00:00:00",
+            "enddate": "2015-06-18T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 60,
+            "sessionname": "January 2015 (B. Sc.)",
+            "startdate": "2015-01-15T00:00:00",
+            "enddate": "2015-07-04T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 55,
+            "sessionname": "July 2014 (B. Sc.)",
+            "startdate": "2014-07-01T00:00:00",
+            "enddate": "2014-12-31T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 59,
+            "sessionname": "July-2014_Thesis/Project (B. Sc.)",
+            "startdate": "2014-07-01T00:00:00",
+            "enddate": "2015-01-17T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 51,
+            "sessionname": "January 2014 (B. Sc.)",
+            "startdate": "2014-02-01T00:00:00",
+            "enddate": "2014-06-30T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 47,
+            "sessionname": "July 2013 (B. Sc.)",
+            "startdate": "2013-07-13T00:00:00",
+            "enddate": "2014-01-25T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 45,
+            "sessionname": "July-2013_Projects (B. Sc.)",
+            "startdate": "2013-07-01T00:00:00",
+            "enddate": "2014-06-30T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 40,
+            "sessionname": "January 2013 (B. Sc.)",
+            "startdate": "2013-01-19T00:00:00",
+            "enddate": "2013-07-08T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 41,
+            "sessionname": "January 2013 (O) (B. Sc.)",
+            "startdate": "2013-01-19T00:00:00",
+            "enddate": "2013-07-08T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 30,
+            "sessionname": "Fall 2012-(O) (B. Sc.)",
+            "startdate": "2012-07-14T00:00:00",
+            "enddate": "2013-01-22T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 31,
+            "sessionname": "Fall 2012-(REG) (B. Sc.)",
+            "startdate": "2012-06-20T00:00:00",
+            "enddate": "2013-01-22T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 39,
+            "sessionname": "Fall 2012_Projects (B. Sc.)",
+            "startdate": "2012-06-20T00:00:00",
+            "enddate": "2013-06-13T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 26,
+            "sessionname": "Fall 2011_Projects (B. Sc.)",
+            "startdate": "2012-02-01T00:00:00",
+            "enddate": "2012-12-10T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 24,
+            "sessionname": "Spring 2012 (B. Sc.)",
+            "startdate": "2012-01-17T00:00:00",
+            "enddate": "2012-07-08T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 22,
+            "sessionname": "Winter 2012 (B. Sc.)",
+            "startdate": "2012-01-08T00:00:00",
+            "enddate": "2012-07-08T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 20,
+            "sessionname": "Autumn 2011_Projects (B. Sc.)",
+            "startdate": "2011-10-13T00:00:00",
+            "enddate": "2012-01-08T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 13,
+            "sessionname": "Fall 2011 (B. Sc.)",
+            "startdate": "2011-06-26T00:00:00",
+            "enddate": "2012-02-10T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 17,
+            "sessionname": "Autumn 2011 (B. Sc.)",
+            "startdate": "2011-05-02T00:00:00",
+            "enddate": "2011-12-31T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 19,
+            "sessionname": "January 2011_Projects (B. Sc.)",
+            "startdate": "2011-01-02T00:00:00",
+            "enddate": "2011-09-01T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 9,
+            "sessionname": "January 2011 (B. Sc.)",
+            "startdate": "2011-01-02T00:00:00",
+            "enddate": "2011-06-29T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 7,
+            "sessionname": "November 2010 (B. Sc.)",
+            "startdate": "2010-11-25T00:00:00",
+            "enddate": "2011-05-31T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 1,
+            "sessionname": "October 2010 (B. Sc.)",
+            "startdate": "2010-10-24T00:00:00",
+            "enddate": "2011-03-03T00:00:00",
+            "status": "Completed"
+        },
+        {
+            "id": 2,
+            "sessionname": "February 2010 (B. Sc.)",
+            "startdate": "2010-02-01T00:00:00",
+            "enddate": "2010-02-01T00:00:00",
+            "status": "Completed"
+        }
+    ],
+    "Message": "All Completed Session [45 entries]",
+    "MessageCode": 200
+}
+
+           Teacher Running Course
+#####http://localhost:49800/api/Teacher/RunningCourses?deptId=1&userId=4
+{
+    "Data": [
+        {
+            "startdate": "2021-06-21T00:00:00",
+            "sectionname": " - Section C",
+            "sessionname": "Spring 2021 (B. Sc.)",
+            "department": "CSE",
+            "Expr1": " - Section C",
+            "id": 6817,
+            "semester": "3rd",
+            "coursecode": "CSE 211(V3)",
+            "coursename": "Object Oriented Programming",
+            "coursecredit": 3.0
+        },
+        {
+            "startdate": "2021-06-21T00:00:00",
+            "sectionname": " - Section D",
+            "sessionname": "Spring 2021 (B. Sc.)",
+            "department": "CSE",
+            "Expr1": " - Section D",
+            "id": 6818,
+            "semester": "3rd",
+            "coursecode": "CSE 211(V3)",
+            "coursename": "Object Oriented Programming",
+            "coursecredit": 3.0
+        },
+        {
+            "startdate": "2021-06-21T00:00:00",
+            "sectionname": " - Section C",
+            "sessionname": "Spring 2021 (B. Sc.)",
+            "department": "CSE",
+            "Expr1": " - Section C",
+            "id": 6821,
+            "semester": "3rd",
+            "coursecode": "CSE 212(V3)",
+            "coursename": "Object Oriented Programming Laboratory",
+            "coursecredit": 1.5
+        },
+        {
+            "startdate": "2021-06-21T00:00:00",
+            "sectionname": " - Section D",
+            "sessionname": "Spring 2021 (B. Sc.)",
+            "department": "CSE",
+            "Expr1": " - Section D",
+            "id": 6822,
+            "semester": "3rd",
+            "coursecode": "CSE 212(V3)",
+            "coursename": "Object Oriented Programming Laboratory",
+            "coursecredit": 1.5
+        }
+    ],
+    "Message": "My All Current Courses [4 entries]",
+    "MessageCode": 200
+}
+
+                Teacher GetCourse Student
+####http://localhost:49800/api/Teacher/GetCourseStudent?courseId=6822&programId=1
+{
+    "Data": [
+        {
+            "id": 3553,
+            "roll": "1903710202003",
+            "name": "Syek Mohammed Moin Uddin",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3554,
+            "roll": "1903710202004",
+            "name": "Mahi Chowdhury",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3557,
+            "roll": "1903710202006",
+            "name": "MD. Imtiaz Rahman Khan",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3559,
+            "roll": "1903710202007",
+            "name": "MD. Tayeb Mahmud",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3561,
+            "roll": "1903710202008",
+            "name": "Mohammad Irfan Khan",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3565,
+            "roll": "1903710202009",
+            "name": "Mossammat Nilufa Yeasmin",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3567,
+            "roll": "1903710202010",
+            "name": "Tonmoy Bose",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3571,
+            "roll": "1903710202012",
+            "name": "Niloy Barua Supta",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3575,
+            "roll": "1903710202016",
+            "name": "Tajin Mabud Emon",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3576,
+            "roll": "1903710202017",
+            "name": "MD. Tanben Faruq",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3577,
+            "roll": "1903710202018",
+            "name": "Nevil Chowdhury",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3581,
+            "roll": "1903710202020",
+            "name": "Prionkar Barua",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3587,
+            "roll": "1903710202023",
+            "name": "Ullash Deb Nath",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3588,
+            "roll": "1903710202024",
+            "name": "Hur-E-Jannath",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3595,
+            "roll": "1903710202029",
+            "name": "Abdus Salam",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3600,
+            "roll": "1903710202033",
+            "name": "Ramisa Arafath Jerin",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3602,
+            "roll": "1903710202035",
+            "name": "Preya Deb",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3604,
+            "roll": "1903710202037",
+            "name": "Mohammed Yonose",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3605,
+            "roll": "1903710202038",
+            "name": "Kothiza Begum Ayrin",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3607,
+            "roll": "1903710202040",
+            "name": "Maher Afroz",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3608,
+            "roll": "1903710202041",
+            "name": "Farial Robama",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3610,
+            "roll": "1903710202043",
+            "name": "Abdullah Al Mamun",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3611,
+            "roll": "1903710202044",
+            "name": "Sayeda Farhana Absar",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3613,
+            "roll": "1903710202046",
+            "name": "Sanjana Hannan",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3615,
+            "roll": "1903710202048",
+            "name": "Kashaf Hossain",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3616,
+            "roll": "1903710202049",
+            "name": "Tanjid Masum Emu",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3617,
+            "roll": "1903710202050",
+            "name": "Saira Jahan",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3599,
+            "roll": "1903710202032",
+            "name": "Mohammad Arif Hasan Rashid",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3620,
+            "roll": "1903710202053",
+            "name": "Taslima Akter Josna",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3623,
+            "roll": "1903710202056",
+            "name": "Ava Rahman",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3625,
+            "roll": "1903710202058",
+            "name": "Fahima Akter",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3626,
+            "roll": "1903710202059",
+            "name": "MD. Simon Alam Sakib",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3630,
+            "roll": "1903710202060",
+            "name": "Abdullah Al Adib",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3631,
+            "roll": "1903710202061",
+            "name": "Partha Shill",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3287,
+            "roll": "1903610201820",
+            "name": "BONNHI SHIKHA PARNA",
+            "batch_name": 36,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3286,
+            "roll": "1903610201817",
+            "name": "MORSALA BINTA BASAR",
+            "batch_name": 36,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3634,
+            "roll": "1903710202064",
+            "name": "H.M. Tarequl Karim",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3635,
+            "roll": "1903710202065",
+            "name": "MD. Tanvir Chowdhury",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3636,
+            "roll": "1903710202066",
+            "name": "Maksudur Rahman Rafi",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3637,
+            "roll": "1903710202067",
+            "name": "Kazi Muntaha Ahasan",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3639,
+            "roll": "1903710202068",
+            "name": "Mohammad Saad Uddin Chowdhury",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3582,
+            "roll": "1903710202021",
+            "name": "R.H.M Sohag Milon",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3624,
+            "roll": "1903710202057",
+            "name": "MD. Abdullah Rahman Dipu",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3257,
+            "roll": "1903610201793",
+            "name": "Kapil Das",
+            "batch_name": 36,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3274,
+            "roll": "1903610201804",
+            "name": "Raj Dev Ullash",
+            "batch_name": 36,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3622,
+            "roll": "1903710202055",
+            "name": "Rukshedul Islam",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3614,
+            "roll": "1903710202047",
+            "name": "Shaharin Jahan Sneha",
+            "batch_name": 37,
+            "examtype": "Regular"
+        },
+        {
+            "id": 3572,
+            "roll": "1903710202013",
+            "name": "Pritam Chowdhury",
+            "batch_name": 37,
+            "examtype": "Regular"
+        }
+    ],
+    "Message": "SuccessFully Get Student",
+    "MessageCode": 200
+}

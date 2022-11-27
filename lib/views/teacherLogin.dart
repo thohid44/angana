@@ -14,6 +14,8 @@ class _TeacherLoginState extends State<TeacherLogin> {
   final TextEditingController stdId = TextEditingController();
   final TextEditingController password = TextEditingController();
 
+  teacherLogin() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
