@@ -85,8 +85,8 @@ class _TeacherLoginState extends State<TeacherLogin> {
           ),
           InkWell(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => TeacherHome()));
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: (context) => TeacherHome()));
             },
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 60.w),
