@@ -14,31 +14,10 @@ class _TodaysAttendsState extends State<TodaysAttends> {
   var color;
   var data;
   var result;
-  List student = [
-    {
-      'id': '00100201',
-      'name': 'Abdul Khader',
-    },
-    {
-      'id': '00100202',
-      'name': 'Abdul Khader',
-    },
-    {
-      'id': '00100204',
-      'name': 'Abdul Khader',
-    },
-    {
-      'id': '00100205',
-      'name': 'Abdul Khader',
-    },
-    {
-      'id': '00100206',
-      'name': 'Abdul Khader',
-    },
-    {
-      'id': '00100207',
-      'name': 'Abdul Khader',
-    },
+  List<Attend> student = [
+   Attend(121, "Angana", false),
+   Attend(122, "Angana", false),
+   Attend(123, "Angana", false)
   ];
   @override
   Widget build(BuildContext context) {
@@ -68,7 +47,7 @@ class _TodaysAttendsState extends State<TodaysAttends> {
                   alignment: Alignment.center,
                   width: 100.w,
                   height: 50.h,
-                  child: Text(
+                  child:const Text(
                     "Student Name",
                     style: TextStyle(
                         fontSize: 13,
@@ -80,7 +59,7 @@ class _TodaysAttendsState extends State<TodaysAttends> {
                   alignment: Alignment.centerLeft,
                   width: 100.w,
                   height: 50.h,
-                  child: Text(
+                  child:const Text(
                     "Action",
                     style: TextStyle(
                         fontSize: 13,
@@ -92,64 +71,33 @@ class _TodaysAttendsState extends State<TodaysAttends> {
             ),
           ),
           SizedBox(
-            height: 15,
+            height: 15.h,
           ),
           Expanded(
               child: ListView.builder(
                   itemCount: student.length,
-                  itemBuilder: ((context, index) {
-                    return Container(
-                      padding: EdgeInsets.symmetric(vertical: 10.h),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            student[index]['id'],
-                            style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black),
-                          ),
-                          Text(
-                            student[index]['name'],
-                            style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              var id = student[index]['id'];
-                              print(id);
-                              setState(() {
-                                color = id;
-                              });
-                            },
-                            child: Container(
-                                alignment: Alignment.center,
-                                height: 30.h,
-                                width: 60.h,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(13.r),
-                                    color: color != student[index]['id']
-                                        ? Colors.blue
-                                        : Colors.red),
-                                child: Text(
-                                  color != student[index]['id']
-                                      ? "Present"
-                                      : "Absent",
-                                  style: TextStyle(
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white),
-                                )),
-                          ),
-                        ],
-                      ),
-                    );
+                  itemBuilder: ((BuildContext context, int index) {
+                    return AttendItem(
+                      student[index].stdId, 
+                      student[index].name, 
+                      student[index].selected, index
+                    ); 
                   })))
         ],
       ),
     );
   }
+  Widget AttendItem(int id, String name, bool selected, int index){ 
+ return ListTile(); 
+
+  }
+}
+
+class Attend{
+int? stdId;
+String? name; 
+bool? selected;  
+Attend(this.stdId, 
+this.name, this.selected
+);
 }

@@ -15,8 +15,9 @@ class TeacherHome extends StatefulWidget {
 
 class _TeacherHomeState extends State<TeacherHome> {
   List<String> _serviceName = [
-    'Running',
-    'Completed',
+  
+    'Physics',
+    'Chemestry'
   ];
   List<int> _serviceNumber = [1, 2];
   String? selector;
@@ -42,7 +43,7 @@ class _TeacherHomeState extends State<TeacherHome> {
                   setState(() {
                     selector = value;
                   });
-                  if (selector == 'Running') {
+                  if (selector == 'Physics') {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
