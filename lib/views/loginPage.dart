@@ -38,7 +38,7 @@ class _LogInPageState extends State<LogInPage> {
   teacherLoginCheck(){
  if(data.contains(uId.text.toString()) && data.contains(uId.text.toString()) ){
         print(uId.text);
-       Navigator.push(context, MaterialPageRoute(builder:(_)=>StudentHome()));
+       Navigator.push(context, MaterialPageRoute(builder:(_)=>TeacherHome()));
       } else{
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User and Password Wrong"), 
         
@@ -54,15 +54,18 @@ class _LogInPageState extends State<LogInPage> {
         body: Column(
           children: [
             SizedBox(
-              height: 10.h,
+              height: 40.h,
             ),
             Container(
+              width: 210.w,
               child: Image.asset("assets/Picture1.png"),
             ),
             SizedBox(
               height: 15.h,
             ),
             Container(
+              width: 190.w,
+              margin:  EdgeInsets.symmetric(horizontal:20.w),
               height: 45.h,
               padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
               decoration: BoxDecoration(
@@ -89,7 +92,7 @@ class _LogInPageState extends State<LogInPage> {
                       fontSize: 14.sp),
                 )),
                 icon: Icon(
-                  Icons.arrow_downward,
+                  Icons.arrow_drop_down_circle,
                   color: Colors.black,
                   size: 20.h,
                 ),
@@ -125,7 +128,7 @@ class _LogInPageState extends State<LogInPage> {
               ),
             ),
             SizedBox(
-              height: 10.h,
+              height: 50.h,
             ),
             Container(
               height: 45.h,
@@ -163,22 +166,22 @@ class _LogInPageState extends State<LogInPage> {
             SizedBox(
               height: 20.h,
             ),
-            GestureDetector(
-              onTap: () {
-                print("password");
-              },
-              child: Padding(
-                padding: EdgeInsets.only(right: 25.w),
-                child: Text(
-                  "Forget password",
-                  style: TextStyle(
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w800,
-                      color: Colors.black),
-                  textAlign: TextAlign.right,
-                ),
-              ),
-            ),
+            // GestureDetector(
+            //   onTap: () {
+            //     print("password");
+            //   },
+            //   child: Padding(
+            //     padding: EdgeInsets.only(right: 25.w),
+            //     child: Text(
+            //       "Forget password",
+            //       style: TextStyle(
+            //           fontSize: 13.sp,
+            //           fontWeight: FontWeight.w800,
+            //           color: Colors.black),
+            //       textAlign: TextAlign.right,
+            //     ),
+            //   ),
+            // ),
             SizedBox(
               height: 20.h,
             ),
