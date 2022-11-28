@@ -15,9 +15,9 @@ class _TodaysAttendsState extends State<TodaysAttends> {
   var data;
   var result;
   List<Attend> student = [
-   Attend(121, "Angana", false),
-   Attend(122, "Angana", false),
-   Attend(123, "Angana", false)
+   Attend("121", "Angana", false),
+   Attend("122", "Angana", false),
+   Attend("123", "Angana", false)
   ];
   @override
   Widget build(BuildContext context) {
@@ -77,27 +77,25 @@ class _TodaysAttendsState extends State<TodaysAttends> {
               child: ListView.builder(
                   itemCount: student.length,
                   itemBuilder: ((BuildContext context, int index) {
-                    return AttendItem(
-                      student[index].stdId, 
-                      student[index].name, 
-                      student[index].selected, index
-                    ); 
+                    return AttendItem(student[index].id.toString() , student[index].name.toString(), student[index].selected,
+                   index
+                    );
                   })))
         ],
       ),
     );
   }
-  Widget AttendItem(int id, String name, bool selected, int index){ 
+  Widget AttendItem( id,  name,  selected,  index){ 
  return ListTile(); 
 
   }
 }
 
 class Attend{
-int? stdId;
+String? id;
 String? name; 
 bool? selected;  
-Attend(this.stdId, 
+Attend(this.id, 
 this.name, this.selected
 );
 }
