@@ -14,12 +14,9 @@ class TeacherHome extends StatefulWidget {
 
 
 class _TeacherHomeState extends State<TeacherHome> {
-  List<String> _serviceName = [
-  
-    'Physics',
-    'Chemestry'
-  ];
-  List<int> _serviceNumber = [1, 2];
+
+
+
   String? selector;
   @override
   Widget build(BuildContext context) {
