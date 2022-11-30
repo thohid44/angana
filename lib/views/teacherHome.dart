@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:angana/model/student_course_model.dart';
 import 'package:angana/model/teacher_running_course_model.dart';
 import 'package:angana/views/todays_attends.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,20 @@ class _TeacherHomeState extends State<TeacherHome> {
     'Physics',
     'Chemestry'
   ];
-  List<int> _serviceNumber = [1, 2];
+  
   String? selector;
+
+   List<StudentCourseModel> student_course = [];
+   courseFetch() async{
+   var res = await DefaultAssetBundle.of(context).loadString("assets/student_course_model.json");
+
+    final jsonData = jsonDecode(res.toString()); 
+
+     student_course.add(jsonData); 
+
+     return student_course; 
+
+   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,10 +51,10 @@ class _TeacherHomeState extends State<TeacherHome> {
                     width: 1.w,
                   ),
                   borderRadius: BorderRadius.circular(13.r)),
-              child: DropdownButton<String>(
+              child: DropdownButton(
                 onChanged: (value) {
                   setState(() {
-                    selector = value;
+                    selector = value.toString();
                   });
                   if (selector == 'Physics') {
                     Navigator.push(
@@ -70,25 +83,25 @@ class _TeacherHomeState extends State<TeacherHome> {
                 isExpanded: true,
 
                 // The list of options
-                items: _serviceName
-                    .map((e) => DropdownMenuItem(
+                items: student_course
+                    .map((map) => DropdownMenuItem(
                           child: Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              e,
+                              map.course.toString(),
                               style: TextStyle(
                                   fontSize: 14.sp, fontWeight: FontWeight.w700),
                             ),
                           ),
-                          value: e,
+                          value: map,
                         ))
                     .toList(),
 
                 // Customize the selected item
-                selectedItemBuilder: (BuildContext context) => _serviceName
-                    .map((e) => Center(
+                selectedItemBuilder: (BuildContext context) => student_course
+                    .map((map) => Center(
                           child: Text(
-                            e,
+                            map.toString(),
                             style: TextStyle(
                                 fontFamily: 'Manjari',
                                 fontWeight: FontWeight.w400,
