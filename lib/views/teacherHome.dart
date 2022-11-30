@@ -20,7 +20,7 @@ class _TeacherHomeState extends State<TeacherHome> {
     'Physics',
     'Chemestry'
   ];
-  
+  List<int> _serviceNumber = [1, 2];
   String? selector;
 
    List<StudentCourseModel> student_course = [];
