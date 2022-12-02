@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:angana/Push/push_notifycation_home.dart';
 import 'package:angana/views/loginPage.dart';
+import 'package:angana/views/todays_attends.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -78,7 +79,7 @@ class _MyAppState extends State<MyApp> {
           home: child,
         );
       },
-      child: LogInPage(),
+      child: TodaysAttends(),
     );
   }
 }

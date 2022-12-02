@@ -1,5 +1,5 @@
-{
-    "Data": [
+
+ [
         {
             "id": "3553",
             "name": "Syek Mohammed Moin Uddin",
@@ -385,7 +385,5 @@
             "batch_name": "37",
             "status": "Present"
         }
-    ],
-    "Message": "Successfully Get Student Data. ",
-    "MessageCode": 200
-}
+    ]
+    

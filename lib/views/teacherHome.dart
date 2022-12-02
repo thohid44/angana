@@ -16,16 +16,27 @@ class TeacherHome extends StatefulWidget {
 class _TeacherHomeState extends State<TeacherHome> {
   String? selector;
 
-  List<StudentCourseModel> student_course = [];
+  List<StudentCourseModel> student_course = [
+    StudentCourseModel(course: "Physics")
+  ];
   courseFetch() async {
     var res = await DefaultAssetBundle.of(context)
         .loadString("assets/student_course_model.json");
 
     final jsonData = jsonDecode(res.toString());
-
-    student_course.add(jsonData);
+    print(jsonData);
+    for (var i in jsonData) {
+      StudentCourseModel data = StudentCourseModel.fromJson(i);
+      print(data.course);
+    }
 
     return student_course;
+  }
+
+  void initState() {
+    courseFetch();
+    print(student_course.first.examtype);
+    super.initState();
   }
 
   @override
@@ -50,12 +61,9 @@ class _TeacherHomeState extends State<TeacherHome> {
                   setState(() {
                     selector = value.toString();
                   });
-                  if (selector == 'Physics') {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => TodaysAttends()));
-                  }
+
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TodaysAttends()));
                 },
                 value: selector,
 
@@ -63,7 +71,7 @@ class _TeacherHomeState extends State<TeacherHome> {
                 underline: Container(),
                 hint: Center(
                     child: Text(
-                  'Select Semester',
+                  'Select Course',
                   style: TextStyle(
                       fontFamily: 'Manjari',
                       fontWeight: FontWeight.w700,
