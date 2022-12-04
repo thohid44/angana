@@ -18,35 +18,36 @@ class _LogInPageState extends State<LogInPage> {
     "Student",
   ];
   var selected;
- List data = [
-      '123', '12345',
-      '456', '12345'
-    ];
-    studentLoginCheck(){
-      if(data.contains(uId.text.toString()) && data.contains(uId.text.toString()) ){
-        print(uId.text);
-       Navigator.push(context, MaterialPageRoute(builder:(_)=>StudentHome()));
-      } else{
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User and Password Wrong"), 
-        
-        duration: Duration(seconds: 2), 
+  List data = ['123', '12345'];
+  List data1 = ['456', '12345'];
+  studentLoginCheck() {
+    if (data.contains(uId.text.toString()) &&
+        data.contains(password.text.toString())) {
+      print(uId.text);
+      Navigator.push(context, MaterialPageRoute(builder: (_) => StudentHome()));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Student Id and Password Wrong"),
+        duration: Duration(seconds: 2),
         dismissDirection: DismissDirection.up,
-        ));
-      }
-      
+      ));
     }
-  teacherLoginCheck(){
- if(data.contains(uId.text.toString()) && data.contains(uId.text.toString()) ){
-        print(uId.text);
-       Navigator.push(context, MaterialPageRoute(builder:(_)=>TeacherHome()));
-      } else{
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User and Password Wrong"), 
-        
-        duration: Duration(seconds: 2), 
-        dismissDirection: DismissDirection.up,
-        ));
-      }
   }
+
+  teacherLoginCheck() {
+    if (data1.contains(uId.text.toString()) &&
+        data1.contains(password.text.toString())) {
+      print(uId.text);
+      Navigator.push(context, MaterialPageRoute(builder: (_) => TeacherHome()));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Teacher Id and Password Wrong"),
+        duration: Duration(seconds: 2),
+        dismissDirection: DismissDirection.up,
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -59,14 +60,14 @@ class _LogInPageState extends State<LogInPage> {
               ),
               Container(
                 width: 210.w,
-                child: Image.asset("assets/Picture1.png"),
+                child: Image.asset("assets/logo.png"),
               ),
               SizedBox(
                 height: 15.h,
               ),
               Container(
                 width: 190.w,
-                margin:  EdgeInsets.symmetric(horizontal:20.w),
+                margin: EdgeInsets.symmetric(horizontal: 20.w),
                 height: 45.h,
                 padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
                 decoration: BoxDecoration(
@@ -81,7 +82,7 @@ class _LogInPageState extends State<LogInPage> {
                     });
                   },
                   value: selected,
-        
+
                   // Hide the default underline
                   underline: Container(),
                   hint: Center(
@@ -98,7 +99,7 @@ class _LogInPageState extends State<LogInPage> {
                     size: 20.h,
                   ),
                   isExpanded: true,
-        
+
                   // The list of options
                   items: loginType
                       .map((e) => DropdownMenuItem(
@@ -107,13 +108,14 @@ class _LogInPageState extends State<LogInPage> {
                               child: Text(
                                 e,
                                 style: TextStyle(
-                                    fontSize: 14.sp, fontWeight: FontWeight.w700),
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w700),
                               ),
                             ),
                             value: e,
                           ))
                       .toList(),
-        
+
                   // Customize the selected item
                   selectedItemBuilder: (BuildContext context) => loginType
                       .map((e) => Center(
@@ -167,31 +169,21 @@ class _LogInPageState extends State<LogInPage> {
               SizedBox(
                 height: 20.h,
               ),
-              // GestureDetector(
-              //   onTap: () {
-              //     print("password");
-              //   },
-              //   child: Padding(
-              //     padding: EdgeInsets.only(right: 25.w),
-              //     child: Text(
-              //       "Forget password",
-              //       style: TextStyle(
-              //           fontSize: 13.sp,
-              //           fontWeight: FontWeight.w800,
-              //           color: Colors.black),
-              //       textAlign: TextAlign.right,
-              //     ),
-              //   ),
-              // ),
               SizedBox(
                 height: 20.h,
               ),
               InkWell(
                 onTap: () {
                   if (selected == 'Teacher') {
-                   teacherLoginCheck();
+                    teacherLoginCheck();
+                  } else if (selected == 'Student') {
+                    studentLoginCheck();
                   } else {
-                  studentLoginCheck();
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Please select a user type"),
+                      duration: Duration(seconds: 2),
+                      dismissDirection: DismissDirection.up,
+                    ));
                   }
                 },
                 child: Container(

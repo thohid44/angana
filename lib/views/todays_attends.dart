@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:angana/model/student_details_model.dart';
+import 'package:angana/views/teacherHome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -38,6 +39,7 @@ class _TodaysAttendsState extends State<TodaysAttends> {
   }
 
   void initState() {
+    attend;
     fetchStudent();
     super.initState();
   }
@@ -46,12 +48,25 @@ class _TodaysAttendsState extends State<TodaysAttends> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => TeacherHome()));
+            },
+            icon: Icon(Icons.arrow_back_ios_new)),
         title: Text("Todays Attends"),
         centerTitle: true,
       ),
       body: ListView.builder(
+        physics: BouncingScrollPhysics(),
+        shrinkWrap: true,
         itemCount: attend.length,
         itemBuilder: ((BuildContext context, index) {
+          if (attend.isEmpty) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
           return Container(
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(top: 5.h, bottom: 5.h, left: 15.w),
@@ -92,7 +107,7 @@ class _TodaysAttendsState extends State<TodaysAttends> {
                     color: rollList.contains(attend[index]['id'])
                         ? Colors.red
                         : Colors.green,
-                    width: 80.w,
+                    width: 60.w,
                     height: 50,
                     child: Text(
                       rollList.contains(attend[index]['id'])
@@ -100,7 +115,7 @@ class _TodaysAttendsState extends State<TodaysAttends> {
                           : "Present",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.w500),
                     ),
                   ),

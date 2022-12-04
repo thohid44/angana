@@ -16,31 +16,30 @@ class TeacherHome extends StatefulWidget {
 class _TeacherHomeState extends State<TeacherHome> {
   String? selector;
 
-  List<StudentCourseModel> student_course = [
-    StudentCourseModel(course: "Physics")
-  ];
-  courseFetch() async {
-    var res = await DefaultAssetBundle.of(context)
-        .loadString("assets/student_course_model.json");
+  // List<StudentCourseModel> student_course = [
+  //   StudentCourseModel(course: "Physics")
+  // ];
+  // courseFetch() async {
+  //   var res = await DefaultAssetBundle.of(context)
+  //       .loadString("assets/student_course_model.json");
 
-    final jsonData = jsonDecode(res.toString());
-    print(jsonData);
-    for (var i in jsonData) {
-      StudentCourseModel data = StudentCourseModel.fromJson(i);
-      print(data.course);
-    }
+  //   final jsonData = jsonDecode(res.toString());
+  //   print(jsonData);
+  //   for (var i in jsonData) {
+  //     StudentCourseModel data = StudentCourseModel.fromJson(i);
+  //     print(data.course);
+  //   }
 
-    return student_course;
-  }
+  //   return student_course;
+  // }
 
   void initState() {
-    courseFetch();
-    print(student_course.first.examtype);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    List student_course = [StudentCourseModel(course: "Physics")];
     return Scaffold(
       appBar: AppBar(title: Text("Teacher Section")),
       body: Padding(
