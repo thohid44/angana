@@ -47,9 +47,9 @@ class StudentCourseResponse {
         examFee: json["ExamFee"],
         message: json["Message"],
         messageCode: json["MessageCode"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "Id": id,
         "Course": course,
         "CourseCode": courseCode,
@@ -61,5 +61,5 @@ class StudentCourseResponse {
         "ExamFee": examFee,
         "Message": message,
         "MessageCode": messageCode,
-    };
+      };
 }

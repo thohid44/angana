@@ -13,29 +13,33 @@ class TeacherHome extends StatefulWidget {
   State<TeacherHome> createState() => _TeacherHomeState();
 }
 
-
 class _TeacherHomeState extends State<TeacherHome> {
-  List<String> _serviceName = [
-  
-    'Physics',
-    'Chemestry'
-  ];
-  List<int> _serviceNumber = [1, 2];
   String? selector;
 
-   List<StudentCourseModel> student_course = [];
-   courseFetch() async{
-   var res = await DefaultAssetBundle.of(context).loadString("assets/student_course_model.json");
+  // List<StudentCourseModel> student_course = [
+  //   StudentCourseModel(course: "Physics")
+  // ];
+  // courseFetch() async {
+  //   var res = await DefaultAssetBundle.of(context)
+  //       .loadString("assets/student_course_model.json");
 
-    final jsonData = jsonDecode(res.toString()); 
+  //   final jsonData = jsonDecode(res.toString());
+  //   print(jsonData);
+  //   for (var i in jsonData) {
+  //     StudentCourseModel data = StudentCourseModel.fromJson(i);
+  //     print(data.course);
+  //   }
 
-     student_course.add(jsonData); 
+  //   return student_course;
+  // }
 
-     return student_course; 
+  void initState() {
+    super.initState();
+  }
 
-   }
   @override
   Widget build(BuildContext context) {
+    List student_course = [StudentCourseResponse(course: "Physics")];
     return Scaffold(
       appBar: AppBar(title: Text("Teacher Section")),
       body: Padding(
@@ -56,12 +60,9 @@ class _TeacherHomeState extends State<TeacherHome> {
                   setState(() {
                     selector = value.toString();
                   });
-                  if (selector == 'Physics') {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => TodaysAttends()));
-                  }
+
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TodaysAttends()));
                 },
                 value: selector,
 
@@ -69,7 +70,7 @@ class _TeacherHomeState extends State<TeacherHome> {
                 underline: Container(),
                 hint: Center(
                     child: Text(
-                  'Select Semester',
+                  'Select Course',
                   style: TextStyle(
                       fontFamily: 'Manjari',
                       fontWeight: FontWeight.w700,
