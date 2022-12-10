@@ -1,13 +1,15 @@
-
+// To parse this JSON data, do
+//
+//     final studentCourseModel = studentCourseModelFromJson(jsonString);
 
 import 'dart:convert';
 
-List<StudentCourseModel> studentCourseModelFromJson(String str) => List<StudentCourseModel>.from(json.decode(str).map((x) => StudentCourseModel.fromJson(x)));
+List<StudentCourseResponse> studentCourseModelFromJson(String str) => List<StudentCourseResponse>.from(json.decode(str).map((x) => StudentCourseResponse.fromJson(x)));
 
-String studentCourseModelToJson(List<StudentCourseModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String studentCourseModelToJson(List<StudentCourseResponse> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class StudentCourseModel {
-    StudentCourseModel({
+class StudentCourseResponse {
+    StudentCourseResponse({
         this.id,
         this.course,
         this.courseCode,
@@ -28,12 +30,12 @@ class StudentCourseModel {
     String? credit;
     String? status;
     String? examtype;
-    dynamic courseFee;
-    dynamic examFee;
+    int? courseFee;
+    int? examFee;
     dynamic message;
     int? messageCode;
 
-    factory StudentCourseModel.fromJson(Map<String, dynamic> json) => StudentCourseModel(
+    factory StudentCourseResponse.fromJson(Map<String, dynamic> json) => StudentCourseResponse(
         id: json["Id"],
         course: json["Course"],
         courseCode: json["CourseCode"],

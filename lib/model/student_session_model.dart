@@ -1,15 +1,15 @@
 // To parse this JSON data, do
 //
-//     final studentSessionModel = studentSessionModelFromJson(jsonString);
+//     final studentGetSessionSelectionModel = studentGetSessionSelectionModelFromJson(jsonString);
 
 import 'dart:convert';
 
-List<StudentSessionModel> studentSessionModelFromJson(String str) => List<StudentSessionModel>.from(json.decode(str).map((x) => StudentSessionModel.fromJson(x)));
+List<StudentGetSessionSelectionModel> studentGetSessionSelectionModelFromJson(String str) => List<StudentGetSessionSelectionModel>.from(json.decode(str).map((x) => StudentGetSessionSelectionModel.fromJson(x)));
 
-String studentSessionModelToJson(List<StudentSessionModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String studentGetSessionSelectionModelToJson(List<StudentGetSessionSelectionModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class StudentSessionModel {
-    StudentSessionModel({
+class StudentGetSessionSelectionModel {
+    StudentGetSessionSelectionModel({
         this.id,
         this.name,
         this.startdate,
@@ -23,16 +23,16 @@ class StudentSessionModel {
     String? name;
     String? startdate;
     String? enddate;
-    String? status;
+    Status? status;
     dynamic message;
     int? messageCode;
 
-    factory StudentSessionModel.fromJson(Map<String, dynamic> json) => StudentSessionModel(
+    factory StudentGetSessionSelectionModel.fromJson(Map<String, dynamic> json) => StudentGetSessionSelectionModel(
         id: json["Id"],
         name: json["Name"],
         startdate: json["Startdate"],
         enddate: json["Enddate"],
-        status: json["Status"],
+        status: statusValues.map[json["Status"]],
         message: json["Message"],
         messageCode: json["MessageCode"],
     );
@@ -42,8 +42,28 @@ class StudentSessionModel {
         "Name": name,
         "Startdate": startdate,
         "Enddate": enddate,
-        "Status": status,
+        "Status": statusValues.reverse[status],
         "Message": message,
         "MessageCode": messageCode,
     };
+}
+
+enum Status { COMPLETED }
+
+final statusValues = EnumValues({
+    "Completed": Status.COMPLETED
+});
+
+class EnumValues<T> {
+    Map<String, T> map;
+   late Map<T, String> reverseMap;
+
+    EnumValues(this.map);
+
+    Map<T, String> get reverse {
+        if (reverseMap == null) {
+            reverseMap = map.map((k, v) => new MapEntry(v, k));
+        }
+        return reverseMap;
+    }
 }

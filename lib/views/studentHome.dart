@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:angana/model/student_course_model.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' as rootBundle;
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:angana/views/student_show_course.dart';
 
+import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart' as http;
 class StudentHome extends StatefulWidget {
   const StudentHome({Key? key}) : super(key: key);
 
@@ -18,13 +20,20 @@ void initState(){
   fetchstudentCourseModel();
   super.initState(); 
 }
-  Future<List<StudentCourseModel>> fetchstudentCourseModel() async{
-    final  jsonData =  await rootBundle.rootBundle.loadString('assets/student_course.json'); 
+var client = http.Client();
+var selector;
+List<StudentCourseResponse> std_course_list=[];
 
-    final list = json.decode(jsonData.toString()) as List<dynamic>; 
-    
-    return list.map((e) => StudentCourseModel.fromJson(e)).toList();
+ Future<List<StudentCourseResponse>> fetchstudentCourseModel() async{
+  
+  var response = await client.get(Uri.parse("http://puc.ac.bd:8098/api/Student/SessionCourse?user=1703310201452&sessionID=170&programID=1")); 
+   var  res = jsonDecode(response.body); 
+   for (var item in res) {
+     StudentCourseResponse  list = StudentCourseResponse.fromJson(item); 
+   }
 
+
+return []; 
   }
   @override
   Widget build(BuildContext context) {
@@ -47,6 +56,74 @@ void initState(){
             ),
           ), 
 
+               Container(
+              height: 45.h,
+              padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1.w,
+                  ),
+                  borderRadius: BorderRadius.circular(13.r)),
+              child: DropdownButton(
+                onChanged: (value) {
+                  setState(() {
+                    selector = value.toString();
+                  });
+                  if (selector == 'Physics') {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => StudentShowCourse()));
+                  }
+                },
+                value: selector,
+
+                // Hide the default underline
+                underline: Container(),
+                hint: Center(
+                    child: Text(
+                  'Select Semester',
+                  style: TextStyle(
+                      fontFamily: 'Manjari',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 14.sp),
+                )),
+                icon: Icon(
+                  Icons.arrow_downward,
+                  color: Colors.black,
+                  size: 20.h,
+                ),
+                isExpanded: true,
+
+                // The list of options
+                items: std_course_list
+                    .map((map) => DropdownMenuItem(
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              map.course.toString(),
+                              style: TextStyle(
+                                  fontSize: 14.sp, fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                          value: map,
+                        ))
+                    .toList(),
+
+                // Customize the selected item
+                selectedItemBuilder: (BuildContext context) => std_course_list
+                    .map((map) => Center(
+                          child: Text(
+                            map.toString(),
+                            style: TextStyle(
+                                fontFamily: 'Manjari',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12.sp),
+                          ),
+                        ))
+                    .toList(),
+              ),
+            ),
 
         ],
       )
