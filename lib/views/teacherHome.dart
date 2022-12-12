@@ -63,7 +63,7 @@ Future<TeacherRunningCourseResponse>courseFetch() async {
                               children: [
                                 ListTile(
                                   onTap: (() {
-                                    Navigator.push(context, MaterialPageRoute(builder:(context)=>TodaysAttends()));
+                                    Navigator.push(context, MaterialPageRoute(builder:(context)=>TodaysAttends(coureId: snapshot.data!.data![index].id.toString(),)));
                                   }),
                                   title: Text(snapshot.data!.data![index].coursename.toString()),
                                   subtitle: Text(snapshot.data!.data![index].id.toString()),

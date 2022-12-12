@@ -1,0 +1,68 @@
+ListView.builder(
+        physics: BouncingScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: attend.length,
+        itemBuilder: ((BuildContext context, index) {
+          if (attend.isEmpty) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(top: 5.h, bottom: 5.h, left: 15.w),
+            height: 40.h,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Text(
+                //   attend[index]['roll'].toString(),
+                //   style:
+                //       TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500),
+                // ),
+                Text(
+                  attend[index]['name'].toString(),
+                  style:
+                      TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500),
+                ),
+                SizedBox(
+                  width: 50.w,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if (rollList.contains(attend[index]['id'])) {
+                        rollList.remove(attend[index]['id']);
+                        print(rollList.remove(attend[index]['id']));
+                        print(rollList);
+                      } else {
+                        rollList.add(attend[index]['id']);
+                        print(rollList.length);
+                        print(rollList);
+                      }
+                    });
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: 10.w),
+                    alignment: Alignment.center,
+                    color: rollList.contains(attend[index]['id'])
+                        ? Colors.red
+                        : Colors.green,
+                    width: 60.w,
+                    height: 50,
+                    child: Text(
+                      rollList.contains(attend[index]['id'])
+                          ? "Absent"
+                          : "Present",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
+        }),
+      ),

@@ -18,7 +18,7 @@ class GetCourseStudentResponse {
     int? messageCode;
 
     factory GetCourseStudentResponse.fromJson(Map<String, dynamic> json) => GetCourseStudentResponse(
-        data: List<Datum>.from(json["Data"].map((x) => Datum.fromJson(x))),
+        data: List<Datum>.from(json["Data"]!.map((x) => Datum.fromJson(x))),
         message: json["Message"],
         messageCode: json["MessageCode"],
     );

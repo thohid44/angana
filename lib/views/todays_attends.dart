@@ -1,14 +1,16 @@
 import 'dart:convert';
 
+import 'package:angana/model/GetCourseStudentResponse.dart';
 import 'package:angana/model/student_details_model.dart';
 import 'package:angana/views/teacherHome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:http/http.dart' as http;
 class TodaysAttends extends StatefulWidget {
-  const TodaysAttends({Key? key}) : super(key: key);
+  String? coureId;
+   TodaysAttends({Key? key, this.coureId}) : super(key: key);
 
   @override
   State<TodaysAttends> createState() => _TodaysAttendsState();
@@ -19,28 +21,24 @@ class _TodaysAttendsState extends State<TodaysAttends> {
   var data;
   var result;
 
-  List<StudentDetailsModel> attendance = [];
-  Future<List<StudentDetailsModel>> fetchStudent() async {
-    var res = await DefaultAssetBundle.of(context)
-        .loadString("assets/student_details.json");
 
-    var jsonData = json.decode(res.toString());
+   
+   
+Future<GetCourseStudentResponse>studentFetchbyCourse() async {
+    var res = await http.get(Uri.parse("http://puc.ac.bd:8098/api/Teacher/GetCourseStudent?courseId=${widget.coureId}&programId=1"));
 
-    for (var i in jsonData) {
-      StudentDetailsModel list = StudentDetailsModel(name: i['name']);
-
-      attendance.add(list);
-      print("thohid ${attendance.first.name}");
-      print(attendance.length);
-      return attendance;
-    }
-
-    return attendance;
+    var jsonData = jsonDecode(res.body.toString());
+   print(jsonData); 
+     if(res.statusCode ==200){
+      return GetCourseStudentResponse.fromJson(jsonData);
+     }else{
+  return GetCourseStudentResponse.fromJson(jsonData);
+     }
+     
   }
 
   void initState() {
-    attend;
-    fetchStudent();
+    studentFetchbyCourse();
     super.initState();
   }
 
@@ -57,49 +55,49 @@ class _TodaysAttendsState extends State<TodaysAttends> {
         title: Text("Todays Attends"),
         centerTitle: true,
       ),
-      body: ListView.builder(
+      body: FutureBuilder<GetCourseStudentResponse>(
+        future: studentFetchbyCourse(),
+        builder:((context, snapshot) {
+       if(snapshot.hasData){
+return ListView.builder(
         physics: BouncingScrollPhysics(),
         shrinkWrap: true,
-        itemCount: attend.length,
+        itemCount: snapshot.data!.data!.length,
         itemBuilder: ((BuildContext context, index) {
-          if (attend.isEmpty) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
+        
           return Container(
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(top: 5.h, bottom: 5.h, left: 15.w),
             height: 40.h,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                // Text(
-                //   attend[index]['roll'].toString(),
-                //   style:
-                //       TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500),
-                // ),
                 Text(
-                  attend[index]['name'].toString(),
+                  snapshot.data!.data![index].name.toString(),
                   style:
-                      TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500),
+                      TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
+                ),
+                Text(
+                  snapshot.data!.data![index].roll.toString(),
+                  style:
+                      TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
                 ),
                 SizedBox(
                   width: 50.w,
                 ),
                 GestureDetector(
                   onTap: () {
-                    setState(() {
-                      if (rollList.contains(attend[index]['id'])) {
-                        rollList.remove(attend[index]['id']);
-                        print(rollList.remove(attend[index]['id']));
-                        print(rollList);
-                      } else {
-                        rollList.add(attend[index]['id']);
-                        print(rollList.length);
-                        print(rollList);
-                      }
-                    });
+                    // setState(() {
+                    //   if (rollList.contains(attend[index]['id'])) {
+                    //     rollList.remove(attend[index]['id']);
+                    //     print(rollList.remove(attend[index]['id']));
+                    //     print(rollList);
+                    //   } else {
+                    //     rollList.add(attend[index]['id']);
+                    //     print(rollList.length);
+                    //     print(rollList);
+                    //   }
+                    // });
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: 10.w),
@@ -115,7 +113,7 @@ class _TodaysAttendsState extends State<TodaysAttends> {
                           : "Present",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 12.sp,
+                          fontSize: 10.sp,
                           fontWeight: FontWeight.w500),
                     ),
                   ),
@@ -123,8 +121,13 @@ class _TodaysAttendsState extends State<TodaysAttends> {
               ],
             ),
           );
+         
         }),
-      ),
+      );
+       }
+
+        return Center(child: Text("Loading...."),);
+      }),),
     );
   }
 
