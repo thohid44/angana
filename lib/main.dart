@@ -1,4 +1,5 @@
 import 'package:angana/views/loginPage.dart';
+import 'package:angana/views/teacherHome.dart';
 import 'package:angana/views/todays_attends.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -44,7 +45,7 @@ class _MyAppState extends State<MyApp> {
           home: child,
         );
       },
-      child: LogInPage(),
+      child: TeacherHome(),
     );
   }
 }
