@@ -1,4 +1,4 @@
-import 'package:angana/views/teacherLogin.dart';
+import 'package:angana/views/Teacher/teacherLogin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

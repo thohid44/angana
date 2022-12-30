@@ -2,15 +2,17 @@ import 'dart:convert';
 
 import 'package:angana/model/GetCourseStudentResponse.dart';
 import 'package:angana/model/student_details_model.dart';
-import 'package:angana/views/teacherHome.dart';
+import 'package:angana/views/Teacher/teacher_total_cls_held_previous.dart';
+import 'package:angana/views/Teacher/teacherHome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
+
 class TodaysAttends extends StatefulWidget {
   String? coureId;
-   TodaysAttends({Key? key, this.coureId}) : super(key: key);
+  TodaysAttends({Key? key, this.coureId}) : super(key: key);
 
   @override
   State<TodaysAttends> createState() => _TodaysAttendsState();
@@ -21,20 +23,17 @@ class _TodaysAttendsState extends State<TodaysAttends> {
   var data;
   var result;
 
-
-   
-   
-Future<GetCourseStudentResponse>studentFetchbyCourse() async {
-    var res = await http.get(Uri.parse("http://puc.ac.bd:8098/api/Teacher/GetCourseStudent?courseId=${widget.coureId}&programId=1"));
+  Future<GetCourseStudentResponse> studentFetchbyCourse() async {
+    var res = await http.get(Uri.parse(
+        "http://puc.ac.bd:8098/api/Teacher/GetCourseStudent?courseId=${widget.coureId}&programId=1"));
 
     var jsonData = jsonDecode(res.body.toString());
-   print(jsonData); 
-     if(res.statusCode ==200){
+    print(jsonData);
+    if (res.statusCode == 200) {
       return GetCourseStudentResponse.fromJson(jsonData);
-     }else{
-  return GetCourseStudentResponse.fromJson(jsonData);
-     }
-     
+    } else {
+      return GetCourseStudentResponse.fromJson(jsonData);
+    }
   }
 
   void initState() {
@@ -57,77 +56,83 @@ Future<GetCourseStudentResponse>studentFetchbyCourse() async {
       ),
       body: FutureBuilder<GetCourseStudentResponse>(
         future: studentFetchbyCourse(),
-        builder:((context, snapshot) {
-       if(snapshot.hasData){
-return ListView.builder(
-        physics: BouncingScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: snapshot.data!.data!.length,
-        itemBuilder: ((BuildContext context, index) {
-        
-          return Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(top: 5.h, bottom: 5.h, left: 15.w),
-            height: 40.h,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  snapshot.data!.data![index].name.toString(),
-                  style:
-                      TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
-                ),
-                Text(
-                  snapshot.data!.data![index].roll.toString(),
-                  style:
-                      TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
-                ),
-                SizedBox(
-                  width: 50.w,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    // setState(() {
-                    //   if (rollList.contains(attend[index]['id'])) {
-                    //     rollList.remove(attend[index]['id']);
-                    //     print(rollList.remove(attend[index]['id']));
-                    //     print(rollList);
-                    //   } else {
-                    //     rollList.add(attend[index]['id']);
-                    //     print(rollList.length);
-                    //     print(rollList);
-                    //   }
-                    // });
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(right: 10.w),
-                    alignment: Alignment.center,
-                    color: rollList.contains(attend[index]['id'])
-                        ? Colors.red
-                        : Colors.green,
-                    width: 60.w,
-                    height: 50,
-                    child: Text(
-                      rollList.contains(attend[index]['id'])
-                          ? "Absent"
-                          : "Present",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 10.sp,
-                          fontWeight: FontWeight.w500),
-                    ),
+        builder: ((context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              physics: BouncingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: snapshot.data!.data!.length,
+              itemBuilder: ((BuildContext context, index) {
+                return Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.only(top: 5.h, bottom: 5.h, left: 15.w),
+                  height: 40.h,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder:(context)=>TeacherTotalClsHelpPrevious()));
+                        },
+                        child: Text(
+                          snapshot.data!.data![index].name.toString(),
+                          style: TextStyle(
+                              fontSize: 16.sp, fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      // Text(
+                      //   snapshot.data!.data![index].roll.toString(),
+                      //   style: TextStyle(
+                      //       fontSize: 10.sp, fontWeight: FontWeight.w600),
+                      // ),
+                      SizedBox(
+                        width: 50.w,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          // setState(() {
+                          //   if (rollList.contains(attend[index]['id'])) {
+                          //     rollList.remove(attend[index]['id']);
+                          //     print(rollList.remove(attend[index]['id']));
+                          //     print(rollList);
+                          //   } else {
+                          //     rollList.add(attend[index]['id']);
+                          //     print(rollList.length);
+                          //     print(rollList);
+                          //   }
+                          // });
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(right: 10.w),
+                          alignment: Alignment.center,
+                          color: rollList.contains(attend[index]['id'])
+                              ? Colors.red
+                              : Colors.green,
+                          width: 60.w,
+                          height: 50,
+                          child: Text(
+                            rollList.contains(attend[index]['id'])
+                                ? "Absent"
+                                : "Present",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                )
-              ],
-            ),
-          );
-         
-        }),
-      );
-       }
+                );
+              }),
+            );
+          }
 
-        return Center(child: Text("Loading...."),);
-      }),),
+          return Center(
+            child: Text("Loading...."),
+          );
+        }),
+      ),
     );
   }
 

@@ -1,6 +1,8 @@
+import 'package:angana/views/Teacher/teacher_total_cls_held_previous.dart';
 import 'package:angana/views/loginPage.dart';
-import 'package:angana/views/teacherHome.dart';
-import 'package:angana/views/todays_attends.dart';
+import 'package:angana/views/studentHome.dart';
+import 'package:angana/views/Teacher/teacherHome.dart';
+import 'package:angana/views/Teacher/todays_attends.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter/material.dart';
@@ -36,7 +38,7 @@ class _MyAppState extends State<MyApp> {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'First Method',
+          title: 'student Attendance',
           // You can use the library anywhere in the app even in theme
           theme: ThemeData(
             primarySwatch: Colors.blue,
