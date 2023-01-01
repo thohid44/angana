@@ -1,7 +1,12 @@
+import 'dart:convert';
+
+import 'package:angana/api_url.dart';
 import 'package:angana/views/studentHome.dart';
 import 'package:angana/views/Teacher/teacherHome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
 
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
@@ -18,13 +23,19 @@ class _LogInPageState extends State<LogInPage> {
     "Student",
   ];
   var selected;
-  List data = ['123', '12345'];
-  List data1 = ['456', '12345'];
-  studentLoginCheck() {
-    if (data.contains(uId.text.toString()) &&
-        data.contains(password.text.toString())) {
-      print(uId.text);
-      Navigator.push(context, MaterialPageRoute(builder: (_) => StudentHome()));
+
+  studentLoginCheck() async {
+    var response = await ApiUrl.userClient.post(Uri.parse(
+        "http://puc.ac.bd:8098/api/Login/LoginAction?loginType=student&user=1703310201452&pass=123456"));
+
+    var res = json.decode(response.body);
+    print(res);
+    if (response.statusCode == 200) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: ((context) => TeacherHome())));
+      var data = res['Id'];
+      print(data);
+      _box.write(ApiUrl.teacherId, data);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Student Id and Password Wrong"),
@@ -34,11 +45,19 @@ class _LogInPageState extends State<LogInPage> {
     }
   }
 
-  teacherLoginCheck() {
-    if (data1.contains(uId.text.toString()) &&
-        data1.contains(password.text.toString())) {
-      print(uId.text);
-      Navigator.push(context, MaterialPageRoute(builder: (_) => TeacherHome()));
+  final _box = GetStorage();
+  teacherLoginCheck() async {
+    var response = await ApiUrl.userClient.post(Uri.parse(
+        "http://puc.ac.bd:8098/api/Login/LoginAction?loginType=teacher&user=kingshuk&pass=123456"));
+
+    var res = json.decode(response.body);
+    print(res);
+    if (response.statusCode == 200) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: ((context) => TeacherHome())));
+      var data = res['Id'];
+      print(data);
+      _box.write(ApiUrl.teacherId, data);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Teacher Id and Password Wrong"),

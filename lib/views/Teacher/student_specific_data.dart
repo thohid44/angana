@@ -1,8 +1,11 @@
+import 'dart:convert';
+
+import 'package:angana/model/StdClassDetailsModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:http/http.dart' as http;
 class StudentSpecificData extends StatefulWidget {
   const StudentSpecificData({super.key});
 
@@ -11,6 +14,25 @@ class StudentSpecificData extends StatefulWidget {
 }
 
 class _StudentSpecificDataState extends State<StudentSpecificData> {
+
+  
+  Future<StdClassDetailsModel> studentFetchbyCourse() async {
+    var res = await http.get(Uri.parse(
+        "http://puc.ac.bd:8098/api/StudentAttendance/getStudentClassDetails?studentId=3553&sessionCourseId=6818&deptId=1"));
+
+    var jsonData = jsonDecode(res.body.toString());
+    print(jsonData);
+    if (res.statusCode == 200) {
+      return StdClassDetailsModel.fromJson(jsonData);
+    } else {
+      return StdClassDetailsModel.fromJson(jsonData);
+    }
+  }
+
+  void initState() {
+    studentFetchbyCourse();
+    super.initState();
+  }
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
       const DropdownMenuItem(
