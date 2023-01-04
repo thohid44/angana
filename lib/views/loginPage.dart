@@ -23,19 +23,20 @@ class _LogInPageState extends State<LogInPage> {
     "Student",
   ];
   var selected;
+  
 
   studentLoginCheck() async {
     var response = await ApiUrl.userClient.post(Uri.parse(
-        "http://puc.ac.bd:8098/api/Login/LoginAction?loginType=student&user=1703310201452&pass=123456"));
+        "http://puc.ac.bd:8098/api/Login/LoginAction?loginType=student&user=1703310201473&pass=sara2223"));
 
     var res = json.decode(response.body);
     print(res);
     if (response.statusCode == 200) {
       Navigator.push(
-          context, MaterialPageRoute(builder: ((context) => TeacherHome())));
+          context, MaterialPageRoute(builder: ((context) => StudentHome())));
       var data = res['Id'];
       print(data);
-      _box.write(ApiUrl.teacherId, data);
+      _box.write(ApiUrl.studentId, data);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Student Id and Password Wrong"),

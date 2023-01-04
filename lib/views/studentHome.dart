@@ -47,6 +47,7 @@ class _StudentHomeState extends State<StudentHome> {
           title: Text("Student Home"),
         ),
         body: Column(
+         
           children: [
             SizedBox(
               height: 30.h,
@@ -73,28 +74,71 @@ class _StudentHomeState extends State<StudentHome> {
                     fontWeight: FontWeight.w600),
               ),
             ),
-            Container(
-              child: Expanded(
-                child: FutureBuilder(
-                    future: fetchstudentCourseModel(),
-                    builder: ((context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.done) {
-                        return ListView.builder(
-                          itemCount: std_course_list.length,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text(
-                                  std_course_list[index].course.toString()),
-                            );
-                          },
-                        );
-                      }
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    })),
+ SizedBox(height: 30.h,), 
+
+InkWell(
+  onTap: (){
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>StudentShowCourse()));
+  },
+  child:   Container(
+  
+    width: double.infinity.w,
+  
+    height: 50.h,
+  
+    margin: EdgeInsets.symmetric(horizontal: 30.w),
+  
+                padding: EdgeInsets.only(left: 15.w),
+  
+                alignment: Alignment.center,
+  
+                decoration: BoxDecoration(
+  
+                  color: Colors.deepPurple
+  
+                ),
+  
+                child: Text(
+  
+                  "Click Attend",
+  
+                  style: TextStyle(
+  
+                      fontSize: 17.sp,
+  
+                      color: Colors.white,
+  
+                      fontWeight: FontWeight.w600),
+  
+                ),
+  
               ),
-            )
+),
+
+ SizedBox(height: 30.h,), 
+
+            // Container(
+            //   child: Expanded(
+            //     child: FutureBuilder(
+            //         future: fetchstudentCourseModel(),
+            //         builder: ((context, snapshot) {
+            //           if (snapshot.connectionState == ConnectionState.done) {
+            //             return ListView.builder(
+            //               itemCount: std_course_list.length,
+            //               itemBuilder: (context, index) {
+            //                 return ListTile(
+            //                   title: Text(
+            //                       std_course_list[index].course.toString()),
+            //                 );
+            //               },
+            //             );
+            //           }
+            //           return Center(
+            //             child: CircularProgressIndicator(),
+            //           );
+            //         })),
+            //   ),
+            // )
           ],
         ));
   }

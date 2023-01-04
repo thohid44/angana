@@ -3,6 +3,7 @@ import 'package:angana/views/loginPage.dart';
 import 'package:angana/views/studentHome.dart';
 import 'package:angana/views/Teacher/teacherHome.dart';
 import 'package:angana/views/Teacher/todays_attends.dart';
+import 'package:angana/views/student_attendance_show.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter/material.dart';
