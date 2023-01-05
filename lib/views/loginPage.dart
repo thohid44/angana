@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:angana/api_url.dart';
-import 'package:angana/views/studentHome.dart';
+import 'package:angana/views/Student/studentHome.dart';
 import 'package:angana/views/Teacher/teacherHome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

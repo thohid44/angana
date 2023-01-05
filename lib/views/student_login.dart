@@ -1,4 +1,5 @@
-import 'package:angana/views/studentHome.dart';
+
+import 'package:angana/views/Student/studentHome.dart';
 import 'package:angana/views/student_reg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

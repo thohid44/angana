@@ -1,9 +1,9 @@
 import 'package:angana/views/Teacher/teacher_total_cls_held_previous.dart';
 import 'package:angana/views/loginPage.dart';
-import 'package:angana/views/studentHome.dart';
+import 'package:angana/views/Student/studentHome.dart';
 import 'package:angana/views/Teacher/teacherHome.dart';
 import 'package:angana/views/Teacher/todays_attends.dart';
-import 'package:angana/views/student_attendance_show.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter/material.dart';
@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           home: child,
         );
       },
-      child: LogInPage(),
+      child: StudentHome(),
     );
   }
 }

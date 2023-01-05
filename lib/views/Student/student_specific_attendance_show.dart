@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:angana/views/student_model/student_attend_show_model.dart';
+import 'package:angana/views/student_model/student_specific_attendance_model.dart';
 import 'package:d_chart/d_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -16,19 +17,19 @@ class StudentAttendaceShow extends StatefulWidget {
 
 class _StudentAttendaceShowState extends State<StudentAttendaceShow> {
 
-Future<StudentAttendShowModel> fetchStudentAttend() async {
+Future<StudentSpicificAttendanceModel> fetchStudentAttend() async {
     
   var client = http.Client();
     var response = await client.get(Uri.parse(
-        "http://puc.ac.bd:8098/api/StudentAttendance/shortReport?sessionCourseId=6818&date=10-19-2022&deptId=1"));
+        "http://puc.ac.bd:8098/api/StudentAttendance/getStudentClassShortDetails?studentId=2596&sessionCourseId=6818&deptId=1"));
     var res = jsonDecode(response.body);
        
        print(res); 
        if(response.statusCode==200){
-        return StudentAttendShowModel.fromJson(res);
+        return StudentSpicificAttendanceModel.fromJson(res);
        }
 
-       return StudentAttendShowModel.fromJson(res);
+       return StudentSpicificAttendanceModel.fromJson(res);
   }
 
    void initState(){
@@ -43,9 +44,15 @@ Future<StudentAttendShowModel> fetchStudentAttend() async {
         title: Text("My Attendance Report"),
       ),
 
-      body: FutureBuilder<StudentAttendShowModel>(
+      body: FutureBuilder<StudentSpicificAttendanceModel>(
         future: fetchStudentAttend(),
         builder: ((context,AsyncSnapshot snapshot) {
+
+          return ListView.builder(
+            itemCount: snapshot.data.data.length,
+            itemBuilder:(context,index){
+            return Container();
+          });
           
         //   if(snapshot.hasData){
         //     return

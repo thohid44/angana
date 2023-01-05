@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:angana/api_url.dart';
 import 'package:angana/model/student_session_course_response.dart';
-import 'package:angana/views/student_attendance_show.dart';
+import 'package:angana/views/Student/student_specific_attendance_show.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';

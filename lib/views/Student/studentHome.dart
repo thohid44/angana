@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:angana/model/student_session_course_response.dart';
-import 'package:angana/views/student_show_course.dart';
+import 'package:angana/views/Student/student_show_course.dart';
 
 import 'package:flutter/material.dart';
 
