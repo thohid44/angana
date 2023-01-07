@@ -15,10 +15,11 @@ class StudentSpecificData extends StatefulWidget {
 
 class _StudentSpecificDataState extends State<StudentSpecificData> {
 
-  
+  final TextEditingController _stdId = TextEditingController(); 
+
   Future<StdClassDetailsModel> studentFetchbyCourse() async {
     var res = await http.get(Uri.parse(
-        "http://puc.ac.bd:8098/api/StudentAttendance/getStudentClassDetails?studentId=3553&sessionCourseId=6818&deptId=1"));
+        "http://puc.ac.bd:8098/api/StudentAttendance/getStudentClassDetails?studentId=${_stdId.text}&sessionCourseId=6818&deptId=1"));
 
     var jsonData = jsonDecode(res.body.toString());
     print(jsonData);
@@ -97,19 +98,13 @@ class _StudentSpecificDataState extends State<StudentSpecificData> {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                   border: Border.all(width: 1.w, color: Colors.grey)),
-              child: DropdownButton(
-                borderRadius: BorderRadius.circular(20.r),
-                  underline: SizedBox(),
-                  value: selectedId,
-                  style: TextStyle(color: Colors.black, fontSize: 17.sp),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      selectedId = newValue!;
-                      if (selectedValue == 'Total Class Held Privious') {
-                      } else if (selectedValue == 'Specific Student Data') {}
-                    });
-                  },
-                  items: dropdownItem)),
+              child: TextFormField(
+                controller: _stdId, 
+                decoration: InputDecoration(
+                  hintText: "Enter Student Id", 
+                  
+                ),
+              )),
                   SizedBox(height: 30.h,),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20.w),

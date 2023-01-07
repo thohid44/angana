@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'package:angana/api_url.dart';
 import 'package:angana/model/student_session_course_response.dart';
 import 'package:angana/views/Student/student_show_course.dart';
+import 'package:angana/views/Student/student_specific_attendance_show.dart';
 
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 class StudentHome extends StatefulWidget {
@@ -20,7 +23,7 @@ class _StudentHomeState extends State<StudentHome> {
     fetchstudentCourseModel();
     super.initState();
   }
-
+  final _box = GetStorage();
   var client = http.Client();
   var selector;
   List<StudentSessionCourseResponse> std_course_list = [];
@@ -56,7 +59,7 @@ class _StudentHomeState extends State<StudentHome> {
               padding: EdgeInsets.only(left: 15.w, bottom: 10),
               alignment: Alignment.centerLeft,
               child: Text(
-                "Student Name: Angana Barua",
+                "Student Name: ${_box.read(ApiUrl.stdName)}",
                 style: TextStyle(
                     fontSize: 17.sp,
                     color: Colors.black,
@@ -67,7 +70,7 @@ class _StudentHomeState extends State<StudentHome> {
               padding: EdgeInsets.only(left: 15.w),
               alignment: Alignment.centerLeft,
               child: Text(
-                "Student Roll: 1234565",
+                "Student Roll: ${_box.read(ApiUrl.studentId)}",
                 style: TextStyle(
                     fontSize: 17.sp,
                     color: Colors.black,
@@ -78,7 +81,7 @@ class _StudentHomeState extends State<StudentHome> {
 
 InkWell(
   onTap: (){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>StudentShowCourse()));
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>StudentAttendaceShow()));
   },
   child:   Container(
   

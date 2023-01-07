@@ -35,8 +35,15 @@ class _LogInPageState extends State<LogInPage> {
       Navigator.push(
           context, MaterialPageRoute(builder: ((context) => StudentHome())));
       var data = res['Id'];
+      var stdName = res['Name'];
+      var pId = res['ProgramId'];
+      var dId = res['DepartmentId'];
       print(data);
       _box.write(ApiUrl.studentId, data);
+      _box.write(ApiUrl.stdName,stdName); 
+      _box.write(ApiUrl.pId, pId);
+      _box.write(ApiUrl.dId, dId);
+      
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Student Id and Password Wrong"),
@@ -49,16 +56,21 @@ class _LogInPageState extends State<LogInPage> {
   final _box = GetStorage();
   teacherLoginCheck() async {
     var response = await ApiUrl.userClient.post(Uri.parse(
-        "http://puc.ac.bd:8098/api/Login/LoginAction?loginType=teacher&user=kingshuk&pass=123456"));
+        "http://puc.ac.bd:8098/api/Teacher/Login?loginType=teacher&deptId=1&user=kingshuk&pass=123456"));
 
     var res = json.decode(response.body);
     print(res);
     if (response.statusCode == 200) {
       Navigator.push(
           context, MaterialPageRoute(builder: ((context) => TeacherHome())));
-      var data = res['Id'];
-      print(data);
-      _box.write(ApiUrl.teacherId, data);
+      var tId = res['Id'];
+      var deptId = res['DeptId'];
+      var uname = res['UserName'];
+      print(tId);
+      _box.write(ApiUrl.teacherId, tId);
+      _box.write(ApiUrl.TdeptId, deptId); 
+      _box.write(ApiUrl.userName, uname);
+      print(uname); 
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Teacher Id and Password Wrong"),

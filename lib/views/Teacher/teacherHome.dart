@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:angana/api_url.dart';
 import 'package:angana/model/teacher_running_course_model.dart';
 import 'package:angana/views/Teacher/history.dart';
 import 'package:angana/views/Teacher/teacher_select_course.dart';
@@ -7,6 +8,7 @@ import 'package:angana/views/Teacher/todays_attends.dart';
 import 'package:angana/views/widgets/customText.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 class TeacherHome extends StatefulWidget {
@@ -19,7 +21,7 @@ class TeacherHome extends StatefulWidget {
 class _TeacherHomeState extends State<TeacherHome> {
   String? selector;
 
-  
+  final _box = GetStorage(); 
 
   void initState() {
    
@@ -52,14 +54,14 @@ class _TeacherHomeState extends State<TeacherHome> {
             Container(
               alignment: Alignment.centerLeft,
               child: customText(
-                  "Teacher ID : 1234", 17.0, Colors.black, FontWeight.bold),
+                  "Teacher ID : ${_box.read(ApiUrl.teacherId.toString())}", 17.0, Colors.black, FontWeight.bold),
             ),
             SizedBox(
               height: 6.h,
             ),
             Container(
               alignment: Alignment.centerLeft,
-              child: customText("Teacher Name : Teacher Name", 17.0,
+              child: customText("Teacher Name : ${_box.read(ApiUrl.userName.toString())}", 17.0,
                   Colors.black, FontWeight.bold),
             ),
             SizedBox(
