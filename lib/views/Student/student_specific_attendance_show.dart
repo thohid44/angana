@@ -12,7 +12,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 class StudentAttendaceShow extends StatefulWidget {
-  const StudentAttendaceShow({super.key});
+  var courseSessionId;
+   StudentAttendaceShow({super.key , this.courseSessionId});
 
   @override
   State<StudentAttendaceShow> createState() => _StudentAttendaceShowState();

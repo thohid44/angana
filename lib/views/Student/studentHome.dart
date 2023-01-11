@@ -81,7 +81,7 @@ class _StudentHomeState extends State<StudentHome> {
 
 InkWell(
   onTap: (){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>StudentAttendaceShow()));
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>StudentShowCourse()));
   },
   child:   Container(
   

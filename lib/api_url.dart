@@ -8,6 +8,7 @@ class ApiUrl {
   static final teacherId = "TeacherId"; 
   static final TdeptId = "DepartmentId"; 
   static final userName = "UserName"; 
+  static final stdSessionId = 'STDSessionId';
 
   static final studentId = "StudentId"; 
   static final stdName="StdName";
