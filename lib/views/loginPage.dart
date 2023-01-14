@@ -70,6 +70,7 @@ class _LogInPageState extends State<LogInPage> {
       _box.write(ApiUrl.teacherId, tId);
       _box.write(ApiUrl.TdeptId, deptId); 
       _box.write(ApiUrl.userName, uname);
+      print(deptId);
       print(uname); 
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

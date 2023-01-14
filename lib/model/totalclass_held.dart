@@ -45,7 +45,7 @@ class Datum {
 
     int? id;
     String? day;
-    DateTime? date;
+    String? date;
     int? adjClass;
     int? tblSessioncourseId;
     String? classStart;
@@ -54,7 +54,7 @@ class Datum {
     factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
         day: json["day"],
-        date: DateTime.parse(json["date"]),
+        date: json["date"],
         adjClass: json["adj_class"],
         tblSessioncourseId: json["tbl_sessioncourse_id"],
         classStart: json["class_start"],
@@ -64,7 +64,7 @@ class Datum {
     Map<String, dynamic> toJson() => {
         "id": id,
         "day": day,
-        "date": date!.toIso8601String(),
+        "date": date,
         "adj_class": adjClass,
         "tbl_sessioncourse_id": tblSessioncourseId,
         "class_start": classStart,

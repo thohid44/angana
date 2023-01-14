@@ -1,3 +1,4 @@
+import 'package:angana/views/Teacher/std_attend_short_report.dart';
 import 'package:angana/views/Teacher/student_specific_data.dart';
 import 'package:angana/views/Teacher/teacher_total_cls_held_previous.dart';
 import 'package:flutter/material.dart';
@@ -36,39 +37,41 @@ class _HistoryState extends State<History> {
         title: Text("History"),
         backgroundColor: Colors.cyan,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: ListView(
         children: [
-          Container(
-              margin: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
-              height: 45.h,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  border: Border.all(width: 1.w, color: Colors.grey)),
-              child: DropdownButton(
-                  underline: SizedBox(),
-                  value: selectedValue,
-                  style: TextStyle(color: Colors.black, fontSize: 17.sp),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      selectedValue = newValue!;
-                      if (selectedValue == 'Total Class Held Privious') {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    TeacherTotalClsHelpPrevious()));
-                      } else if (selectedValue == 'Specific Student Data') {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => StudentSpecificData()));
-                      }
-                    });
-                  },
-                  items: dropdownItems)),
+          Card(
+            child: Container(
+              child: ListTile(
+                onTap:(){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>StudentAttendShortReport()));
+                },
+                title: Text("Student Attendance Short Report"),
+              ),
+            ),
+          ),
+          Card(
+            child: Container(
+              child: ListTile(
+                onTap:(){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>TeacherTotalClsHelpPrevious()));
+                },
+                title: Text("Total Class Held Privious"),
+              ),
+            ),
+          )
+          ,
+          Card(
+            child: Container(
+              child: ListTile(
+                onTap:(){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>StudentSpecificData()));
+                },
+                title: Text("Specific Student Data"),
+              ),
+            ),
+          )
         ],
-      ),
+      )
     );
   }
 }
