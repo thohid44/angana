@@ -7,14 +7,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
-class StudentSpecificData extends StatefulWidget {
-  const StudentSpecificData({super.key});
+import '../student_model/std_specific_details_model.dart';
+
+class StudentSpecificDataDetails extends StatefulWidget {
+  const StudentSpecificDataDetails({super.key});
 
   @override
-  State<StudentSpecificData> createState() => _StudentSpecificDataState();
+  State<StudentSpecificDataDetails> createState() => _StudentSpecificDataDetailsState();
 }
 
-class _StudentSpecificDataState extends State<StudentSpecificData> {
+class _StudentSpecificDataDetailsState extends State<StudentSpecificDataDetails> {
   final TextEditingController _stdId = TextEditingController();
   final _box = GetStorage();
   var departId;
@@ -32,16 +34,16 @@ class _StudentSpecificDataState extends State<StudentSpecificData> {
   }
 
   bool searchFalse = false;
-  Future<GetStudentClassShortDetails> getStdClsShortDetails() async {
+  Future<StudentSpecificDatailsModel> getStdClsShortDetails() async {
     var res = await http.get(Uri.parse(
-        "http://puc.ac.bd:8098/api/StudentAttendance/getStudentClassShortDetails?studentId=${stdId}&sessionCourseId=$course&deptId=$teacherDeptId"));
+        "http://puc.ac.bd:8098/api/StudentAttendance/getStudentClassDetails?studentId=${_stdId.text}&sessionCourseId=$course&deptId=$teacherDeptId"));
 
     var jsonData = jsonDecode(res.body);
     print(jsonData);
     if (res.statusCode == 200) {
-      return GetStudentClassShortDetails.fromJson(jsonData);
+      return StudentSpecificDatailsModel.fromJson(jsonData);
     } else {
-      return GetStudentClassShortDetails.fromJson(jsonData);
+      return StudentSpecificDatailsModel.fromJson(jsonData);
     }
   }
 
@@ -64,7 +66,7 @@ class _StudentSpecificDataState extends State<StudentSpecificData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+  
       appBar: AppBar(
         title: Text("Student Specific Data By Course", style: TextStyle(
           fontSize: 17.sp
@@ -167,60 +169,85 @@ class _StudentSpecificDataState extends State<StudentSpecificData> {
             height: 30.h,
           ),
           Container(
-            height: 300.h,
+            height: 350.h,
             margin: EdgeInsets.symmetric(horizontal: 20.w),
             alignment: Alignment.centerLeft,
             child: searchFalse == true
-                ? FutureBuilder<GetStudentClassShortDetails>(
+                ? FutureBuilder<StudentSpecificDatailsModel>(
                     future: getStdClsShortDetails(),
                     builder: ((context, AsyncSnapshot snapshot) {
                       if (snapshot.hasData) {
                         return ListView.builder(
                             itemCount: snapshot.data.data.length,
                             itemBuilder: ((context, index) {
-                              return Column(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      "Total Present: ${snapshot.data.data[index].presentClass.toString()}",
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.bold),
+                              return Card(
+                                elevation: 3,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(8.0),
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        "Date: ${snapshot.data.data[index].date.toString()}",
+                                        style: TextStyle(
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      "Total Absent: ${snapshot.data.data[index].absentClass.toString()}",
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.bold),
+                                    Container(
+                                      padding: EdgeInsets.all(8.0),
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        "Day: ${snapshot.data.data[index].day.toString()}",
+                                        style: TextStyle(
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      "Total Class: ${snapshot.data.data[index].totalClass.toString()}",
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.bold),
+                                    Container(
+                                      padding: EdgeInsets.all(8.0),
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        "Class Start: ${snapshot.data.data[index].classStart.toString()}",
+                                        style: TextStyle(
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      "Percentage: ${snapshot.data.data[index].percentage.toString()}",
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.bold),
+                                    
+                                    Container(
+                                      padding: EdgeInsets.all(8.0),
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        "Class End: ${snapshot.data.data[index].classEnd.toString()}",
+                                        style: TextStyle(
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
-                                  )
-                                ],
+                                     Container(
+                                      padding: EdgeInsets.all(8.0),
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        "Adjustment Class: ${snapshot.data.data[index].adjustmentClass.toString()}",
+                                        style: TextStyle(
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                      Container(
+                                      padding: EdgeInsets.all(8.0),
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        "Status: ${snapshot.data.data[index].status.toString()}",
+                                        style: TextStyle(
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    
+                                  ],
+                                ),
                               );
                             }));
                       }

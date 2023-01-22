@@ -1,5 +1,8 @@
-import 'package:angana/views/Teacher/std_attend_short_report.dart';
+import 'package:angana/views/Teacher/routine.dart';
+import 'package:angana/views/Teacher/std_attend_brif_specific_day_report.dart';
+import 'package:angana/views/Teacher/std_attend_short_specific_day_report.dart';
 import 'package:angana/views/Teacher/student_specific_data.dart';
+import 'package:angana/views/Teacher/student_specific_data_details.dart';
 import 'package:angana/views/Teacher/teacher_total_cls_held_previous.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -49,6 +52,16 @@ class _HistoryState extends State<History> {
               ),
             ),
           ),
+            Card(
+            child: Container(
+              child: ListTile(
+                onTap:(){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>StudentAttendBrifReport()));
+                },
+                title: Text("Student Attendance Brif Report"),
+              ),
+            ),
+          ),
           Card(
             child: Container(
               child: ListTile(
@@ -66,7 +79,27 @@ class _HistoryState extends State<History> {
                 onTap:(){
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>StudentSpecificData()));
                 },
-                title: Text("Specific Student Data"),
+                title: Text("Specific Student Short Data"),
+              ),
+            ),
+          ),
+           Card(
+            child: Container(
+              child: ListTile(
+                onTap:(){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>StudentSpecificDataDetails()));
+                },
+                title: Text("Specific Student Details Data"),
+              ),
+            ),
+          ),
+          Card(
+            child: Container(
+              child: ListTile(
+                onTap:(){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Routine()));
+                },
+                title: Text("Class Routine"),
               ),
             ),
           )
