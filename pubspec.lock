@@ -64,20 +64,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.16.0"
-  community_charts_common:
-    dependency: transitive
-    description:
-      name: community_charts_common
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
-  community_charts_flutter:
-    dependency: transitive
-    description:
-      name: community_charts_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   convert:
     dependency: transitive
     description:
@@ -99,13 +85,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-  d_chart:
-    dependency: "direct main"
-    description:
-      name: d_chart
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -206,12 +185,12 @@ packages:
     source: hosted
     version: "3.2.2"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.17.0"
+    version: "0.18.0"
   js:
     dependency: transitive
     description:
@@ -226,13 +205,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.7.0"
-  logging:
-    dependency: transitive
-    description:
-      name: logging
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.0"
   matcher:
     dependency: transitive
     description:
@@ -317,13 +289,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.0"
-  pie_chart:
-    dependency: "direct main"
-    description:
-      name: pie_chart
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.3.2"
   platform:
     dependency: transitive
     description:

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:angana/api_url.dart';
 import 'package:angana/views/student_model/student_attend_show_model.dart';
 import 'package:angana/views/student_model/student_specific_attendance_model.dart';
-import 'package:d_chart/d_chart.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
