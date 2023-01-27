@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:angana/api_url.dart';
+import 'package:angana/model/GetCourseStudentResponse.dart';
 import 'package:angana/model/get_student_class_short_details_model.dart';
 import 'package:angana/model/teacher_running_course_model.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +59,19 @@ class _StudentSpecificDataState extends State<StudentSpecificData> {
     }
   }
 
+  Future<GetCourseStudentResponse> studentFetchbyCourse() async {
+    var res = await http.get(Uri.parse(
+        "http://puc.ac.bd:8098/api/Teacher/GetCourseStudent?courseId=$course&programId=1"));
+
+    var jsonData = jsonDecode(res.body.toString());
+    print(jsonData);
+    if (res.statusCode == 200) {
+      return GetCourseStudentResponse.fromJson(jsonData);
+    } else {
+      return GetCourseStudentResponse.fromJson(jsonData);
+    }
+  }
+
   var course;
   String selectedValue = 'Select Course';
   String selectedId = 'Student Id';
@@ -66,9 +80,10 @@ class _StudentSpecificDataState extends State<StudentSpecificData> {
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       appBar: AppBar(
-        title: Text("Student Specific Data By Course", style: TextStyle(
-          fontSize: 17.sp
-        ),),
+        title: Text(
+          "Student Specific Data By Course",
+          style: TextStyle(fontSize: 17.sp),
+        ),
       ),
       body: ListView(
         children: [
@@ -105,6 +120,9 @@ class _StudentSpecificDataState extends State<StudentSpecificData> {
                           onChanged: (value) {
                             setState(() {
                               course = value.toString();
+
+                              studentFetchbyCourse();
+                              searchFalse = true; 
                               print(course);
                             });
                           });
@@ -119,115 +137,56 @@ class _StudentSpecificDataState extends State<StudentSpecificData> {
             height: 20.h,
           ),
           Container(
-              margin: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
-              height: 45.h,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  border: Border.all(width: 1.w, color: Colors.grey)),
-              child: TextFormField(
-                controller: _stdId,
-                decoration: InputDecoration(
-                  hintText: "Enter Student Id",
-                ),
-              )),
-          SizedBox(height: 20.h),
-          InkWell(
-            onTap: () {
-              print(_stdId.text);
-
-              setState(() {
-                stdId = _stdId.text.toString();
-                print("student Id $stdId");
-                if (stdId != null && course != null) {
-                  searchFalse = true;
-                  getStdClsShortDetails();
-                } else {
-                  print("Select Course and Student Id");
-
-                  ScaffoldMessenger(child: Text("Select Course and Student Id"));
-                }
-              });
-            },
-            child: Container(
-              alignment: Alignment.center,
-              margin: EdgeInsets.symmetric(horizontal: 100.w),
-              height: 50,
-              width: 200,
-              decoration: BoxDecoration(color: Colors.green),
-              child: Text(
-                "Search",
-                style: TextStyle(
-                    fontSize: 18.sp,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 30.h,
-          ),
-          Container(
-            height: 300.h,
+            height: 500.h,
             margin: EdgeInsets.symmetric(horizontal: 20.w),
             alignment: Alignment.centerLeft,
             child: searchFalse == true
-                ? FutureBuilder<GetStudentClassShortDetails>(
-                    future: getStdClsShortDetails(),
-                    builder: ((context, AsyncSnapshot snapshot) {
-                      if (snapshot.hasData) {
-                        return ListView.builder(
-                            itemCount: snapshot.data.data.length,
-                            itemBuilder: ((context, index) {
-                              return Column(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      "Total Present: ${snapshot.data.data[index].presentClass.toString()}",
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      "Total Absent: ${snapshot.data.data[index].absentClass.toString()}",
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      "Total Class: ${snapshot.data.data[index].totalClass.toString()}",
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      "Percentage: ${snapshot.data.data[index].percentage.toString()}",
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  )
-                                ],
-                              );
-                            }));
-                      }
-                      return Center(
-                        child: Text("No Data fetch "),
-                      );
-                    }))
+                ? FutureBuilder<GetCourseStudentResponse>(
+            future: studentFetchbyCourse(),
+            builder: ((context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: snapshot.data!.data!.length,
+                  itemBuilder: ((BuildContext context, index) {
+                    return Container(
+                      alignment: Alignment.centerLeft,
+                      margin: EdgeInsets.only(left: 25.w, right: 25.w),
+                      padding: EdgeInsets.only(top: 5.h, bottom: 5.h),
+                      height: 40.h,
+                      width: double.infinity,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                            },
+                            child: Text(
+                              snapshot.data!.data![index].name.toString(),
+                              style: TextStyle(
+                                  fontSize: 12.sp,fontWeight: FontWeight.bold ),
+                            ),
+                          ),
+                          Text(
+                            snapshot.data!.data![index].roll.toString(),
+                            style: TextStyle(
+                                fontSize: 10.sp, fontWeight: FontWeight.w600),
+                          ),
+                         
+                        
+                        ],
+                      ),
+                    );
+                  }),
+                );
+              }
+
+              return Center(
+                child: Text("Loading...."),
+              );
+            }),
+          )
                 : Center(
                     child: Text("Search by student Id and Course"),
                   ),
