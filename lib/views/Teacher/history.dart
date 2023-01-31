@@ -3,6 +3,7 @@ import 'package:angana/views/Teacher/std_attend_brif_specific_day_report.dart';
 import 'package:angana/views/Teacher/std_attend_short_specific_day_report.dart';
 import 'package:angana/views/Teacher/student_specific_data.dart';
 import 'package:angana/views/Teacher/student_specific_data_details.dart';
+import 'package:angana/views/Teacher/teacher_complete_course.dart';
 import 'package:angana/views/Teacher/teacher_total_cls_held_previous.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -102,7 +103,17 @@ class _HistoryState extends State<History> {
                 title: Text("Class Routine"),
               ),
             ),
-          )
+          ),
+           Card(
+            child: Container(
+              child: ListTile(
+                onTap:(){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>TeacherCompleteCourse()));
+                },
+                title: Text("Completed Course"),
+              ),
+            ),
+          ),
         ],
       )
     );

@@ -23,7 +23,6 @@ class _LogInPageState extends State<LogInPage> {
     "Student",
   ];
   var selected;
-  
 
   studentLoginCheck() async {
     var response = await ApiUrl.userClient.post(Uri.parse(
@@ -40,10 +39,9 @@ class _LogInPageState extends State<LogInPage> {
       var dId = res['DepartmentId'];
       print(data);
       _box.write(ApiUrl.studentId, data);
-      _box.write(ApiUrl.stdName,stdName); 
+      _box.write(ApiUrl.stdName, stdName);
       _box.write(ApiUrl.pId, pId);
       _box.write(ApiUrl.dId, dId);
-      
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Student Id and Password Wrong"),
@@ -68,10 +66,10 @@ class _LogInPageState extends State<LogInPage> {
       var uname = res['UserName'];
       print(tId);
       _box.write(ApiUrl.teacherId, tId);
-      _box.write(ApiUrl.TdeptId, deptId); 
+      _box.write(ApiUrl.TdeptId, deptId);
       _box.write(ApiUrl.userName, uname);
       print(deptId);
-      print(uname); 
+      print(uname);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Teacher Id and Password Wrong"),
@@ -81,6 +79,7 @@ class _LogInPageState extends State<LogInPage> {
     }
   }
 
+  bool _passwordVisible = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -169,9 +168,11 @@ class _LogInPageState extends State<LogInPage> {
               Container(
                 height: 45.h,
                 margin: EdgeInsets.symmetric(horizontal: 20.w),
-                child: TextField(
+                child: TextFormField(
                   controller: uId,
+                  
                   decoration: InputDecoration(
+                      labelText: 'User ID',
                       hintText: "Enter User's ID",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.r)),
@@ -187,17 +188,37 @@ class _LogInPageState extends State<LogInPage> {
               Container(
                 height: 45.h,
                 margin: EdgeInsets.symmetric(horizontal: 20.w),
-                child: TextField(
-                  controller: password,
-                  decoration: InputDecoration(
-                      hintText: "Enter password",
-                      border: OutlineInputBorder(
+                child:TextFormField(
+   keyboardType: TextInputType.text,
+   controller: password,
+   obscureText: !_passwordVisible,//This will obscure text dynamically
+   decoration: InputDecoration(
+       labelText: 'Password',
+       hintText: 'Enter your password',
+        border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.r)),
                       prefixIcon: Icon(
-                        Icons.lock,
+                        Icons.person,
                         color: Colors.red,
-                      )),
-                ),
+                      ),
+       // Here is key idea
+       suffixIcon: IconButton(
+            icon: Icon(
+              // Based on passwordVisible state choose the icon
+               _passwordVisible
+               ? Icons.visibility
+               : Icons.visibility_off,
+               color: Theme.of(context).primaryColorDark,
+               ),
+            onPressed: () {
+               // Update the state i.e. toogle the state of passwordVisible variable
+               setState(() {
+                   _passwordVisible = !_passwordVisible;
+               });
+             },
+            ),
+          ),
+        )
               ),
               SizedBox(
                 height: 20.h,

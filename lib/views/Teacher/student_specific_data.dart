@@ -3,6 +3,7 @@ import 'package:angana/api_url.dart';
 import 'package:angana/model/GetCourseStudentResponse.dart';
 import 'package:angana/model/get_student_class_short_details_model.dart';
 import 'package:angana/model/teacher_running_course_model.dart';
+import 'package:angana/views/Teacher/student_specific_data_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
@@ -33,18 +34,18 @@ class _StudentSpecificDataState extends State<StudentSpecificData> {
   }
 
   bool searchFalse = false;
-  Future<GetStudentClassShortDetails> getStdClsShortDetails() async {
-    var res = await http.get(Uri.parse(
-        "http://puc.ac.bd:8098/api/StudentAttendance/getStudentClassShortDetails?studentId=${stdId}&sessionCourseId=$course&deptId=$teacherDeptId"));
+  // Future<GetStudentClassShortDetails> getStdClsShortDetails() async {
+  //   var res = await http.get(Uri.parse(
+  //       "http://puc.ac.bd:8098/api/StudentAttendance/getStudentClassShortDetails?studentId=${stdId}&sessionCourseId=$course&deptId=$teacherDeptId"));
 
-    var jsonData = jsonDecode(res.body);
-    print(jsonData);
-    if (res.statusCode == 200) {
-      return GetStudentClassShortDetails.fromJson(jsonData);
-    } else {
-      return GetStudentClassShortDetails.fromJson(jsonData);
-    }
-  }
+  //   var jsonData = jsonDecode(res.body);
+  //   print(jsonData);
+  //   if (res.statusCode == 200) {
+  //     return GetStudentClassShortDetails.fromJson(jsonData);
+  //   } else {
+  //     return GetStudentClassShortDetails.fromJson(jsonData);
+  //   }
+  // }
 
   Future<TeacherRunningCourseResponse> courseFetch() async {
     var res = await http.get(Uri.parse(
@@ -78,10 +79,10 @@ class _StudentSpecificDataState extends State<StudentSpecificData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+
       appBar: AppBar(
         title: Text(
-          "Student Specific Data By Course",
+          "Student Specific Data  By Course",
           style: TextStyle(fontSize: 17.sp),
         ),
       ),
@@ -122,7 +123,7 @@ class _StudentSpecificDataState extends State<StudentSpecificData> {
                               course = value.toString();
 
                               studentFetchbyCourse();
-                              searchFalse = true; 
+                              searchFalse = true;
                               print(course);
                             });
                           });
@@ -142,53 +143,70 @@ class _StudentSpecificDataState extends State<StudentSpecificData> {
             alignment: Alignment.centerLeft,
             child: searchFalse == true
                 ? FutureBuilder<GetCourseStudentResponse>(
-            future: studentFetchbyCourse(),
-            builder: ((context, snapshot) {
-              if (snapshot.hasData) {
-                return ListView.builder(
-                  physics: BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: snapshot.data!.data!.length,
-                  itemBuilder: ((BuildContext context, index) {
-                    return Container(
-                      alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.only(left: 25.w, right: 25.w),
-                      padding: EdgeInsets.only(top: 5.h, bottom: 5.h),
-                      height: 40.h,
-                      width: double.infinity,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                            },
-                            child: Text(
-                              snapshot.data!.data![index].name.toString(),
-                              style: TextStyle(
-                                  fontSize: 12.sp,fontWeight: FontWeight.bold ),
-                            ),
-                          ),
-                          Text(
-                            snapshot.data!.data![index].roll.toString(),
-                            style: TextStyle(
-                                fontSize: 10.sp, fontWeight: FontWeight.w600),
-                          ),
-                         
-                        
-                        ],
-                      ),
-                    );
-                  }),
-                );
-              }
+                    future: studentFetchbyCourse(),
+                    builder: ((context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          physics: BouncingScrollPhysics(),
+                          shrinkWrap: true,
+                          reverse: true,
+                          itemCount: snapshot.data!.data!.length,
+                          itemBuilder: ((BuildContext context, index) {
+                            return Container(
+                              alignment: Alignment.centerLeft,
+                              margin: EdgeInsets.only(left: 10.w, right: 10.w),
+                              padding: EdgeInsets.only(top: 5.h, bottom: 5.h),
+                              height: 40.h,
+                              width: double.infinity,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    snapshot.data!.data![index].name.toString(),
+                                    style: TextStyle(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    StudentSpecificDataView(
+                                                        snapshot.data!
+                                                            .data![index].id
+                                                            .toString(),
+                                                        course)));
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        height: 40.h,
+                                        width: 60.w,
+                                        color: Colors.purple,
+                                        child: Text(
+                                          "View",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      )),
+                                ],
+                              ),
+                            );
+                          }),
+                        );
+                      }
 
-              return Center(
-                child: Text("Loading...."),
-              );
-            }),
-          )
+                      return Center(
+                        child: Text("Loading...."),
+                      );
+                    }),
+                  )
                 : Center(
-                    child: Text("Search by student Id and Course"),
+                    child: Text("Search by  Course"),
                   ),
           )
         ],

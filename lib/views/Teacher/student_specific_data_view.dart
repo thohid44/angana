@@ -10,8 +10,11 @@ import 'package:http/http.dart' as http;
 
 class StudentSpecificDataView extends StatefulWidget {
   String? stdId;
-  String? course; 
-  StudentSpecificDataView(this.stdId, this.course);
+  String? course;
+  StudentSpecificDataView(
+    this.stdId,
+    this.course,
+  );
   @override
   State<StudentSpecificDataView> createState() =>
       _StudentSpecificDataViewState();
@@ -51,8 +54,10 @@ class _StudentSpecificDataViewState extends State<StudentSpecificDataView> {
 
   @override
   Widget build(BuildContext context) {
+    print("course id ${widget.course}");
+    print("Student id ${widget.stdId}");
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+     
       appBar: AppBar(
         title: Text(
           "Student Specific Data View",
