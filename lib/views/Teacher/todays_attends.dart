@@ -37,7 +37,7 @@ class _TodaysAttendsState extends State<TodaysAttends> {
       return GetCourseStudentResponse.fromJson(jsonData);
     }
   }
-
+List attend = []; 
   void initState() {
     studentFetchbyCourse();
     super.initState();
@@ -81,32 +81,32 @@ class _TodaysAttendsState extends State<TodaysAttends> {
                                   fontSize: 12.sp,fontWeight: FontWeight.bold ),
                             ),
                           ),
-                          // Text(
-                          //   snapshot.data!.data![index].roll.toString(),
-                          //   style: TextStyle(
-                          //       fontSize: 10.sp, fontWeight: FontWeight.w600),
-                          // ),
+                          Text(
+                            snapshot.data!.data![index].roll.toString(),
+                            style: TextStyle(
+                                fontSize: 10.sp, fontWeight: FontWeight.w600),
+                          ),
                          
                           GestureDetector(
                             onTap: () {
-                              // setState(() {
-                              //   if (rollList.contains(attend[index]['id'])) {
-                              //     rollList.remove(attend[index]['id']);
-                              //     print(rollList.remove(attend[index]['id']));
-                              //     print(rollList);
-                              //   } else {
-                              //     rollList.add(attend[index]['id']);
-                              //     print(rollList.length);
-                              //     print(rollList);
-                              //   }
-                              // });
+                              setState(() {
+                                if (rollList.contains(attend[index]['id'])) {
+                                  rollList.remove(attend[index]['id']);
+                                  print(rollList.remove(attend[index]['id']));
+                                  print(rollList);
+                                } else {
+                                  rollList.add(attend[index]['id']);
+                                  print(rollList.length);
+                                  print(rollList);
+                                }
+                              });
                             },
                             child: Container(
                               margin: EdgeInsets.only(right: 10.w),
                               alignment: Alignment.center,
-                              // color: rollList.contains(attend[index]['id'])
-                              //     ? Colors.red
-                              //     : Colors.green,
+                              color: rollList.contains(attend[index]['id'])
+                                  ? Colors.red
+                                  : Colors.green,
                               width: 50.w,
                               height: 50,
                               child: Text(
