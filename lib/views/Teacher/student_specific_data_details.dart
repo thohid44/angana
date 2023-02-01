@@ -3,20 +3,21 @@ import 'package:angana/api_url.dart';
 import 'package:angana/model/GetCourseStudentResponse.dart';
 import 'package:angana/model/get_student_class_short_details_model.dart';
 import 'package:angana/model/teacher_running_course_model.dart';
+import 'package:angana/views/Teacher/student_specific_data_details_view.dart';
 import 'package:angana/views/Teacher/student_specific_data_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
-class StudentSpecificData extends StatefulWidget {
-  const StudentSpecificData({super.key});
+class StudentSpecificDataDetails extends StatefulWidget {
+  const StudentSpecificDataDetails({super.key});
 
   @override
-  State<StudentSpecificData> createState() => _StudentSpecificDataState();
+  State<StudentSpecificDataDetails> createState() => _StudentSpecificDataDetailsState();
 }
 
-class _StudentSpecificDataState extends State<StudentSpecificData> {
+class _StudentSpecificDataDetailsState extends State<StudentSpecificDataDetails> {
   final TextEditingController _stdId = TextEditingController();
   final _box = GetStorage();
   var departId;
@@ -174,7 +175,7 @@ class _StudentSpecificDataState extends State<StudentSpecificData> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    StudentSpecificDataView(
+                                                    StudentSpecificDataDetailsView(
                                                         snapshot.data!
                                                             .data![index].id
                                                             .toString(),
@@ -186,7 +187,7 @@ class _StudentSpecificDataState extends State<StudentSpecificData> {
                                         width: 60.w,
                                         color: Colors.purple,
                                         child: Text(
-                                          "View",
+                                          "Details",
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 14.sp,

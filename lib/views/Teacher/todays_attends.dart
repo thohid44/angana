@@ -13,7 +13,7 @@ import 'package:http/http.dart' as http;
 
 class TodaysAttends extends StatefulWidget {
   String? coureId;
-  
+
   TodaysAttends({Key? key, this.coureId}) : super(key: key);
 
   @override
@@ -47,7 +47,6 @@ List attend = [];
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      
         title: Text("Todays Attends"),
         centerTitle: true,
       ),
@@ -73,33 +72,37 @@ List attend = [];
                         children: [
                           InkWell(
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder:(context)=>TeacherTotalClsHelpPrevious()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          TeacherTotalClsHelpPrevious()));
                             },
                             child: Text(
                               snapshot.data!.data![index].name.toString(),
                               style: TextStyle(
-                                  fontSize: 12.sp,fontWeight: FontWeight.bold ),
+                                  fontSize: 12.sp, fontWeight: FontWeight.bold),
                             ),
                           ),
-                          Text(
-                            snapshot.data!.data![index].roll.toString(),
-                            style: TextStyle(
-                                fontSize: 10.sp, fontWeight: FontWeight.w600),
-                          ),
+                          // Text(
+                          //   snapshot.data!.data![index].roll.toString(),
+                          //   style: TextStyle(
+                          //       fontSize: 10.sp, fontWeight: FontWeight.w600),
+                          // ),
                          
                           GestureDetector(
                             onTap: () {
-                              setState(() {
-                                if (rollList.contains(attend[index]['id'])) {
-                                  rollList.remove(attend[index]['id']);
-                                  print(rollList.remove(attend[index]['id']));
-                                  print(rollList);
-                                } else {
-                                  rollList.add(attend[index]['id']);
-                                  print(rollList.length);
-                                  print(rollList);
-                                }
-                              });
+                              // setState(() {
+                              //   if (rollList.contains(attend[index]['id'])) {
+                              //     rollList.remove(attend[index]['id']);
+                              //     print(rollList.remove(attend[index]['id']));
+                              //     print(rollList);
+                              //   } else {
+                              //     rollList.add(attend[index]['id']);
+                              //     print(rollList.length);
+                              //     print(rollList);
+                              //   }
+                              // });
                             },
                             child: Container(
                               margin: EdgeInsets.only(right: 10.w),
@@ -110,7 +113,7 @@ List attend = [];
                               width: 50.w,
                               height: 50,
                               child: Text(
-                               "Present",
+                                "Present",
                                 style: TextStyle(
                                     color: Colors.green,
                                     fontSize: 10.sp,
@@ -130,24 +133,30 @@ List attend = [];
               );
             }),
           ),
-          SizedBox(height: 15.h,), 
-
+          SizedBox(
+            height: 15.h,
+          ),
           InkWell(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder:(context)=>TeacherAjustmentClass(
-                sessionCourseId: widget.coureId
-              )));
-
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => TeacherAjustmentClass(
+                          sessionCourseId: widget.coureId)));
             },
             child: Container(
               alignment: Alignment.center,
               margin: EdgeInsets.symmetric(horizontal: 40.w),
-              height: 50.h, 
+              height: 50.h,
               width: 100.w,
-              decoration: BoxDecoration(
-                color: Colors.green
+              decoration: BoxDecoration(color: Colors.green),
+              child: Text(
+                "Set Adjustment Class",
+                style: TextStyle(
+                    fontSize: 17.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
               ),
-              child: Text("Set Adjustment Class",style: TextStyle(fontSize: 17.sp, color: Colors.white, fontWeight: FontWeight.bold),),
             ),
           )
         ],
@@ -155,6 +164,6 @@ List attend = [];
     );
   }
 
-  List rollList = [];
   
+  List attend = [];
 }
