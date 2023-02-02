@@ -26,7 +26,7 @@ class _LogInPageState extends State<LogInPage> {
 
   studentLoginCheck() async {
     var response = await ApiUrl.userClient.post(Uri.parse(
-        "http://puc.ac.bd:8098/api/Login/LoginAction?loginType=student&user=1703310201473&pass=sara2223"));
+        "http://puc.ac.bd:8098/api/Login/LoginAction?loginType=student&user=${uId.text}&pass=${password.text}"));
 
     var res = json.decode(response.body);
     print(res);
@@ -54,7 +54,7 @@ class _LogInPageState extends State<LogInPage> {
   final _box = GetStorage();
   teacherLoginCheck() async {
     var response = await ApiUrl.userClient.post(Uri.parse(
-        "http://puc.ac.bd:8098/api/Teacher/Login?loginType=teacher&deptId=1&user=kingshuk&pass=123456"));
+        "http://puc.ac.bd:8098/api/Teacher/Login?loginType=teacher&deptId=1&user=${uId.text}&pass=${password.text}"));
 
     var res = json.decode(response.body);
     print(res);
