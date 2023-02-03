@@ -25,6 +25,7 @@ class _RoutineState extends State<Routine> {
   String? entryBy;
   String selectedValue = 'Select Course';
   var course;
+  var day; 
   final _box = GetStorage();
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
@@ -43,7 +44,7 @@ class _RoutineState extends State<Routine> {
   Future<RoutineModel> getRoute() async {
     var response = await http.get(
       Uri.parse(
-          "http://puc.ac.bd:8098/api/StudentAttendance/CheckClassRoutine?sessionCourseId=$course&day=saturday&deptId=$deptId"),
+          "http://puc.ac.bd:8098/api/StudentAttendance/CheckClassRoutine?sessionCourseId=$course&day=$day&deptId=1"),
     );
 
     var res = jsonDecode(response.body);
@@ -69,6 +70,7 @@ class _RoutineState extends State<Routine> {
   String date='';
   final TextEditingController selectDate = TextEditingController();
   void initState() {
+   courseFetch();
     deptId = _box.read(ApiUrl.TdeptId);
     entryBy = _box.read(ApiUrl.userName);
     teacherId = _box.read(ApiUrl.teacherId);
@@ -80,7 +82,7 @@ class _RoutineState extends State<Routine> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Get Short Details of specific Day",
+            "Class Routine",
             style: TextStyle(fontSize: 17.sp),
           ),
         ),
@@ -121,18 +123,42 @@ class _RoutineState extends State<Routine> {
                             setState(() {
                               course = value.toString();
                               print(course);
-                              date = selectDate.text;
-                              
-                              status = true;
-                              getRoute();
+                                         
                             });
                           });
                     }
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child: Text("Loading .."),
                     );
                   }),
                 )),
+                SizedBox(height:20.h), 
+                 Container(
+            height: 45.h,
+            alignment: Alignment.center,
+            width: 150.w,
+            decoration: BoxDecoration(
+              border: Border.all(width: 1.w, color: Colors.grey)
+            ),
+             child: DropdownButton(
+              underline: SizedBox(),
+      value: selectDay,
+      style: TextStyle(color: Colors.black,fontSize: 17.sp),
+      onChanged: (String? newValue){
+        setState(() {
+        
+       day = newValue;
+          if(day !=null)
+       {
+         print(day); 
+           status = true; 
+          getRoute();
+       }
+        });
+      },
+      items: dropdownItems
+      )
+           ),
             SizedBox(
               height: 50.h,
             ),
@@ -142,13 +168,13 @@ class _RoutineState extends State<Routine> {
                   builder: ((context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       return Container(
-                          height: 300.h,
+                          height: 400.h,
                           child: ListView.builder(
                               itemCount: snapshot.data.data.length,
                               itemBuilder: ((context, index) {
                                 return Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                 
                                   children: [
                                     SizedBox(
                                       height: 15.h,
@@ -182,10 +208,13 @@ class _RoutineState extends State<Routine> {
                                   ],
                                 );
                               })));
-                    }
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
+                            
+                    } return Center(child: CircularProgressIndicator(),);
+                    
+                    // return Center(
+                    //   child: Text("No Routine found for this course!", style: TextStyle(fontSize: 15.sp, 
+                    //   color:Colors.red, fontWeight: FontWeight.bold),),
+                    // );
                   }), 
                   ):Center(child:Text("Select Date and Course")),
             )
