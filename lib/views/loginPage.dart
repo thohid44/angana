@@ -30,7 +30,8 @@ class _LogInPageState extends State<LogInPage> {
 
     var res = json.decode(response.body);
     print(res);
-    if (response.statusCode == 200) {
+    if (res['Id'] !=null || res['Name'] !=null) {
+     
       Navigator.push(
           context, MaterialPageRoute(builder: ((context) => StudentHome())));
       var data = res['Id'];
@@ -52,13 +53,15 @@ class _LogInPageState extends State<LogInPage> {
   }
 
   final _box = GetStorage();
+
   teacherLoginCheck() async {
     var response = await ApiUrl.userClient.post(Uri.parse(
         "http://puc.ac.bd:8098/api/Teacher/Login?loginType=teacher&deptId=1&user=kingshuk&pass=123456"));
 
     var res = json.decode(response.body);
     print(res);
-    if (response.statusCode == 200) {
+    if (res['Id'] !=null || res['Name'] !=null) {
+
       Navigator.push(
           context, MaterialPageRoute(builder: ((context) => TeacherHome())));
       var tId = res['Id'];
@@ -66,7 +69,9 @@ class _LogInPageState extends State<LogInPage> {
       var uname = res['UserName'];
       print(tId);
       _box.write(ApiUrl.teacherId, tId);
+
       _box.write(ApiUrl.TdeptId, deptId);
+
       _box.write(ApiUrl.userName, uname);
       print(deptId);
       print(uname);
