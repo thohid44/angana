@@ -124,7 +124,13 @@ List attend = [];
                                     : Colors.green,
                                 width: 80.w,
                                 height: 50,
-                                child: Text(
+                                child: attend.contains(data![index].roll)?Text(
+                                  "Absent",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.bold),
+                                ):Text(
                                   "Present",
                                   style: TextStyle(
                                       color: Colors.white,

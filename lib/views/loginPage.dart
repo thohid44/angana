@@ -29,8 +29,8 @@ class _LogInPageState extends State<LogInPage> {
         "http://puc.ac.bd:8098/api/Login/LoginAction?loginType=student&user=${uId.text}&pass=${password.text}"));
 
     var res = json.decode(response.body);
-    print(res);
-    if (response.statusCode == 200) {
+     print(res);
+    if (res['MessageCode'] == 200) {
       Navigator.push(
           context, MaterialPageRoute(builder: ((context) => StudentHome())));
       var data = res['Id'];
@@ -38,6 +38,10 @@ class _LogInPageState extends State<LogInPage> {
       var pId = res['ProgramId'];
       var dId = res['DepartmentId'];
       print(data);
+       var roll = res['Roll'];
+
+
+      _box.write(ApiUrl.roll, roll); 
       _box.write(ApiUrl.studentId, data);
       _box.write(ApiUrl.stdName, stdName);
       _box.write(ApiUrl.pId, pId);
@@ -58,16 +62,17 @@ class _LogInPageState extends State<LogInPage> {
 
     var res = json.decode(response.body);
     print(res);
-    if (response.statusCode == 200) {
+    if (res['MessageCode'] == 200) {
       Navigator.push(
           context, MaterialPageRoute(builder: ((context) => TeacherHome())));
       var tId = res['Id'];
       var deptId = res['DeptId'];
       var uname = res['UserName'];
-      print(tId);
+     
       _box.write(ApiUrl.teacherId, tId);
       _box.write(ApiUrl.TdeptId, deptId);
       _box.write(ApiUrl.userName, uname);
+
       print(deptId);
       print(uname);
     } else {

@@ -5,6 +5,7 @@ import 'package:angana/model/teacher_running_course_model.dart';
 import 'package:angana/views/Teacher/history.dart';
 import 'package:angana/views/Teacher/teacher_select_course.dart';
 import 'package:angana/views/Teacher/todays_attends.dart';
+import 'package:angana/views/loginPage.dart';
 import 'package:angana/views/widgets/customText.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -96,8 +97,50 @@ class _TeacherHomeState extends State<TeacherHome> {
                     },
                     items: dropdownItems)),
             SizedBox(
-              height: 10.h,
+              height: 100.h,
             ),
+
+
+            
+InkWell(
+  onTap: (){
+    Navigator.pop(context, MaterialPageRoute(builder: (context)=>LogInPage()));
+  },
+  child:   Container(
+  
+    width: double.infinity.w,
+  
+    height: 50.h,
+  
+    margin: EdgeInsets.symmetric(horizontal: 30.w),
+  
+                padding: EdgeInsets.only(left: 15.w),
+  
+                alignment: Alignment.center,
+  
+                decoration: BoxDecoration(
+  
+                  color: Colors.deepPurple
+  
+                ),
+  
+                child: Text(
+  
+                  "Log Out",
+  
+                  style: TextStyle(
+  
+                      fontSize: 17.sp,
+  
+                      color: Colors.white,
+  
+                      fontWeight: FontWeight.w600),
+  
+                ),
+  
+              ),
+),
+
           ]
         ),
       ),

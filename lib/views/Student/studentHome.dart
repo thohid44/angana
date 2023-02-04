@@ -4,6 +4,7 @@ import 'package:angana/api_url.dart';
 import 'package:angana/model/student_session_course_response.dart';
 import 'package:angana/views/Student/student_show_course.dart';
 import 'package:angana/views/Student/student_specific_attendance_show.dart';
+import 'package:angana/views/loginPage.dart';
 
 import 'package:flutter/material.dart';
 
@@ -70,7 +71,7 @@ class _StudentHomeState extends State<StudentHome> {
               padding: EdgeInsets.only(left: 15.w),
               alignment: Alignment.centerLeft,
               child: Text(
-                "Student Roll: ${_box.read(ApiUrl.studentId)}",
+                "Student Roll: ${_box.read(ApiUrl.roll)}",
                 style: TextStyle(
                     fontSize: 17.sp,
                     color: Colors.black,
@@ -89,7 +90,7 @@ InkWell(
   
     height: 50.h,
   
-    margin: EdgeInsets.symmetric(horizontal: 30.w),
+    margin: EdgeInsets.symmetric(horizontal: 40.w),
   
                 padding: EdgeInsets.only(left: 15.w),
   
@@ -117,6 +118,51 @@ InkWell(
   
               ),
 ),
+
+SizedBox(height: 40.h,), 
+
+InkWell(
+  onTap: (){
+    Navigator.pop(context, MaterialPageRoute(builder: (context)=>LogInPage()));
+  },
+  child:   Container(
+  
+    width: double.infinity.w,
+  
+    height: 50.h,
+  
+    margin: EdgeInsets.symmetric(horizontal: 50.w),
+  
+                padding: EdgeInsets.only(left: 15.w),
+  
+                alignment: Alignment.center,
+  
+                decoration: BoxDecoration(
+  
+                  color: Colors.red
+  
+                ),
+  
+                child: Text(
+  
+                  "Log Out",
+  
+                  style: TextStyle(
+  
+                      fontSize: 17.sp,
+  
+                      color: Colors.white,
+  
+                      fontWeight: FontWeight.w600),
+  
+                ),
+  
+              ),
+),
+
+
+
+  
 
  SizedBox(height: 30.h,), 
 
