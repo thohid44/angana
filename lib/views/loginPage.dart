@@ -29,23 +29,25 @@ class _LogInPageState extends State<LogInPage> {
         "http://puc.ac.bd:8098/api/Login/LoginAction?loginType=student&user=${uId.text}&pass=${password.text}"));
 
     var res = json.decode(response.body);
-     print(res);
-    if (res['MessageCode'] == 200) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: ((context) => StudentHome())));
+    print(res);
+    if (res['MessageCode']==200) {
       var data = res['Id'];
       var stdName = res['Name'];
       var pId = res['ProgramId'];
       var dId = res['DepartmentId'];
+      var roll = res['Roll'];
       print(data);
-       var roll = res['Roll'];
-
-
-      _box.write(ApiUrl.roll, roll); 
+      _box.write(
+        ApiUrl.roll,roll
+      );
       _box.write(ApiUrl.studentId, data);
       _box.write(ApiUrl.stdName, stdName);
       _box.write(ApiUrl.pId, pId);
       _box.write(ApiUrl.dId, dId);
+      
+         Navigator.push(
+         context, MaterialPageRoute(builder: ((context) => StudentHome())));
+      
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Student Id and Password Wrong"),
@@ -62,17 +64,22 @@ class _LogInPageState extends State<LogInPage> {
         "http://puc.ac.bd:8098/api/Teacher/Login?loginType=teacher&deptId=1&user=${uId.text}&pass=${password.text}"));
 
     var res = json.decode(response.body);
-    print(res);
-    if (res['MessageCode'] == 200) {
-          context, MaterialPageRoute(builder: ((context) => TeacherHome())));
+    // print(res);
+    if (res['MessageCode']==200) {
+      var tId = res['Id'];
+      var deptId = res['DeptId'];
+      var uname = res['UserName'];
+      print(tId);
       _box.write(ApiUrl.teacherId, tId);
 
       _box.write(ApiUrl.TdeptId, deptId);
 
       _box.write(ApiUrl.userName, uname);
-
       print(deptId);
       print(uname);
+
+      Navigator.push(
+          context, MaterialPageRoute(builder: ((context) => TeacherHome())));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Teacher Id and Password Wrong"),
@@ -144,6 +151,7 @@ class _LogInPageState extends State<LogInPage> {
                                 e,
                                 style: TextStyle(
                                     fontSize: 14.sp,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.w700),
                               ),
                             ),
@@ -158,6 +166,7 @@ class _LogInPageState extends State<LogInPage> {
                               e,
                               style: TextStyle(
                                   fontFamily: 'Manjari',
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12.sp),
                             ),
@@ -173,7 +182,9 @@ class _LogInPageState extends State<LogInPage> {
                 margin: EdgeInsets.symmetric(horizontal: 20.w),
                 child: TextFormField(
                   controller: uId,
-                  
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
                   decoration: InputDecoration(
                       labelText: 'User ID',
                       hintText: "Enter User's ID",
@@ -189,40 +200,43 @@ class _LogInPageState extends State<LogInPage> {
                 height: 20.h,
               ),
               Container(
-                height: 45.h,
-                margin: EdgeInsets.symmetric(horizontal: 20.w),
-                child:TextFormField(
-   keyboardType: TextInputType.text,
-   controller: password,
-   obscureText: !_passwordVisible,//This will obscure text dynamically
-   decoration: InputDecoration(
-       labelText: 'Password',
-       hintText: 'Enter your password',
-        border: OutlineInputBorder(
+                  height: 45.h,
+                  margin: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: TextFormField(
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                    keyboardType: TextInputType.text,
+                    controller: password,
+                    obscureText:
+                        !_passwordVisible, //This will obscure text dynamically
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      hintText: 'Enter your password',
+                      border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.r)),
                       prefixIcon: Icon(
                         Icons.person,
                         color: Colors.red,
                       ),
-       // Here is key idea
-       suffixIcon: IconButton(
-            icon: Icon(
-              // Based on passwordVisible state choose the icon
-               _passwordVisible
-               ? Icons.visibility
-               : Icons.visibility_off,
-               color: Theme.of(context).primaryColorDark,
-               ),
-            onPressed: () {
-               // Update the state i.e. toogle the state of passwordVisible variable
-               setState(() {
-                   _passwordVisible = !_passwordVisible;
-               });
-             },
-            ),
-          ),
-        )
-              ),
+                      // Here is key idea
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          // Based on passwordVisible state choose the icon
+                          _passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Theme.of(context).primaryColorDark,
+                        ),
+                        onPressed: () {
+                          // Update the state i.e. toogle the state of passwordVisible variable
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                          });
+                        },
+                      ),
+                    ),
+                  )),
               SizedBox(
                 height: 20.h,
               ),

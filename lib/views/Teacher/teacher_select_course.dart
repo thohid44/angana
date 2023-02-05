@@ -26,10 +26,12 @@ class _TeacherSelectCourseState extends State<TeacherSelectCourse> {
       return TeacherRunningCourseResponse.fromJson(jsonData);
     }
   }
-   void initState() {
+
+  void initState() {
     courseFetch();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,45 +39,45 @@ class _TeacherSelectCourseState extends State<TeacherSelectCourse> {
         appBar: AppBar(
           title: Text("Teacher Select Course"),
         ),
-
         body: FutureBuilder<TeacherRunningCourseResponse>(
-                future: courseFetch(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return ListView.builder(
-                        itemCount: snapshot.data!.data!.length,
-                        itemBuilder: (context, index) {
-                          return Card(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ListTile(
-                                  onTap: (() {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => TodaysAttends(
-                                                  coureId: snapshot
-                                                      .data!.data![index].id
-                                                      .toString(),
-                                                )));
-                                  }),
-                                  title: Text(snapshot
-                                      .data!.data![index].coursename
-                                      .toString()),
-                                  subtitle: Text(snapshot.data!.data![index].id
-                                      .toString()),
-                                ),
-                              ],
-                            ),
-                          );
-                        });
-                  } else {
-                    return Center(child: Text('Loading'));
-                  }
-                },
-              ),
+          future: courseFetch(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                  itemCount: snapshot.data!.data!.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ListTile(
+                            onTap: (() {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => TodaysAttends(
+                                            coureId: snapshot
+                                                .data!.data![index].id
+                                                .toString(),
+                                          )));
+                            }),
+                            title: Text(snapshot.data!.data![index].coursename
+                                .toString()),
+                            subtitle:
+                                Text(snapshot.data!.data![index].id.toString()),
+                            trailing: Text(
+                                snapshot.data!.data![index].expr1.toString()),
+                          ),
+                        ],
+                      ),
+                    );
+                  });
+            } else {
+              return Center(child: Text('Loading'));
+            }
+          },
+        ),
       ),
     );
   }

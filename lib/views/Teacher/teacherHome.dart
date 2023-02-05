@@ -104,7 +104,7 @@ class _TeacherHomeState extends State<TeacherHome> {
             
 InkWell(
   onTap: (){
-    Navigator.pop(context, MaterialPageRoute(builder: (context)=>LogInPage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>LogInPage()));
   },
   child:   Container(
   

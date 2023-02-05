@@ -167,7 +167,7 @@ class _StudentAttendBrifReportState extends State<StudentAttendBrifReport> {
                                              Container(
                                                padding: EdgeInsets.all(5.0),
                                               child: Text(
-                                                  "Status: ${snapshot.data.data[index].batchName.toString()}"),
+                                                  "Batch: ${snapshot.data.data[index].batchName.toString()}"),
                                             ),
                                             Container(
                                                padding: EdgeInsets.all(5.0),
